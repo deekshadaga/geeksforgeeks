@@ -1,0 +1,31 @@
+#include <stdio.h>
+void rev(int arr[], int start, int end) 
+{ 
+    while (start < end) 
+    { 
+        int temp = arr[start];  
+        arr[start] = arr[end]; 
+        arr[end] = temp; 
+        start++; 
+        end--; 
+    }  
+}      
+int main() {
+	int n,i,j,d,t;
+    scanf("%d",&t);
+    for(j=0;j<t;j++){
+        scanf("%d %d",&n,&d);
+        int a[n];
+        for(i=0;i<n;i++){
+            scanf("%d",&a[i]);
+        }
+        rev(a,0,d-1);
+        rev(a,d,n-1);
+        rev(a,0,n-1);
+        for(i=0;i<n;i++){
+            printf("%d ",a[i]);
+        }
+    printf("\n");
+    }
+	return 0;
+}

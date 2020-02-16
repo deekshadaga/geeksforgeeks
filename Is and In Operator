@@ -1,0 +1,10 @@
+#Function to find if number is present in the list or not
+def number_present(num, query):
+    #num is a 'list', query is a 'int'
+    for i in range(len(num)):    #write this here - i in range(len(num))
+                             # see the use of 'in' in for loop
+        if (num[i] is query) : #write this here - num[i] is query
+                             # see the use of 'is' as equal to
+            return True
+    return False 
+    

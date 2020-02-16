@@ -1,0 +1,17 @@
+# Function to check value and 
+# return accordingly
+def check_status(a, b, status):
+    ##Your code here
+    ##Either True or False is returned
+    if(status==True):
+        if(a<0 and b<0):
+            return True
+        else:
+            return False
+    else:
+        if(a>0 and b<0):
+            return True
+        elif(b>0 and a<0):
+            return True
+        else:
+            return False

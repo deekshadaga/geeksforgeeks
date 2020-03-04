@@ -1,0 +1,6 @@
+# Function to print words with spaces
+def print_fun():
+    print("Geeks","For","Geeks")
+    # Your code here
+    # Do not use space in the string
+    # try to use seperator

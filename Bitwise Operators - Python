@@ -1,0 +1,6 @@
+def bitwise(a,b, c):
+    print(a^a)
+    print(c^b)
+    print(a & b)
+    print(c | (a^a))
+    print(~(c^b))

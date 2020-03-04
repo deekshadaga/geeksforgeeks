@@ -1,0 +1,10 @@
+# Function to join given strings
+def combo_string(a, b):
+    if(len(a)>len(b)):
+      short=b
+      longer=a
+    else:
+        longer=b
+        short=a
+
+    return short+longer+short

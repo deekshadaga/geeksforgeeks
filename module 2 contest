@@ -1,0 +1,18 @@
+def aweSum(a, b):
+    sum=a+b
+    if(sum>19 and sum<41):
+        return 42
+    else:
+        return sum
+        
+        
+def doge_count(str):
+    count=0
+    for i in range(0,len(str)-3):
+        if(str[i]=='d' and str[i+1]=='o' and str[i+3]=='e'):
+            count+=1
+    return count
+    
+    
+    
+    

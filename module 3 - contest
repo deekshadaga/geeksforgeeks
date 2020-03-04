@@ -1,0 +1,12 @@
+def copyCat(str):
+    return (str[-2:]*3)
+
+
+def boom(str):
+    if(str[-4:]=='boom'):
+        return True
+    else:
+        return False
+
+
+

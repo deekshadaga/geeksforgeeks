@@ -1,0 +1,8 @@
+# Function to perform mathematical operation on X and Y
+def do_operation(x, y):
+    print(x+y)
+    print(x-y)
+    print(x*y)
+    print(x/y)
+    print(x**y)
+    print(x//y)

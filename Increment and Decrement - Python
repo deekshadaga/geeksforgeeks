@@ -1,0 +1,7 @@
+# Function to perform increment and decrement
+def do_operation(x, y):
+    # Your code here
+    x-=1
+    y+=1
+    print (x)
+    print (y)

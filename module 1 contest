@@ -1,0 +1,27 @@
+def digitsSum(n):
+    ##Your code here
+    sum=0
+    while(n>0):
+        res=n%10
+        sum+=res
+        n=n//10
+    return sum
+    
+    
+    
+    
+    
+    
+    
+    
+def mean(d,m):
+    ##Your code here
+    return ((d+(m*3))//4)
+    
+    
+    
+    
+    
+    
+    
+ 

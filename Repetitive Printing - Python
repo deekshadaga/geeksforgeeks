@@ -1,0 +1,4 @@
+# Function to print given string 'x' times
+def print_fun(string, x):
+    # Your code here
+    print(string*x)

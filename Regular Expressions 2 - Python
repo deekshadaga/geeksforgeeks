@@ -1,0 +1,7 @@
+def validate(str):
+    pat= re.compile('[a-z]\W+\d+')##your pattern here
+    match=re.search(pat,str)
+    if(match):
+        return True
+    else:
+        return False

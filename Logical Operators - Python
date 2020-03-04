@@ -1,0 +1,4 @@
+def logical(a,b):
+    print(a and b) ## do a and b
+    print(a or b) ## do a or b
+    print(not a) ## do not a

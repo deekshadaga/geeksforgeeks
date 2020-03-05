@@ -1,0 +1,1 @@
+power = lambda a,b: a**b##write the lambda expression in one line here

@@ -1,0 +1,11 @@
+# Function to calculate average
+def calc_average(nums):
+    temp=nums
+    temp.remove(min(temp))
+    temp.remove(max(temp))
+    s=sum(temp)
+    s=s//len(temp)
+    # Your code here
+    
+    
+    return s

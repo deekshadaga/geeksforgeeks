@@ -1,0 +1,9 @@
+# Function to print list 
+# print elements in required fashion
+def print_elements(n, arr):
+    for i in range(0,n//2):
+        print(arr[i],end=' ')
+    for i in range(n//2,n,3):
+        print(arr[i],end=' ')
+    # Your code here 
+    # use '//' to divide to get int for index

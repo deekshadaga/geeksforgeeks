@@ -1,0 +1,25 @@
+sum=lambda x,y:x+y
+
+
+
+class Cuboid:
+    def __init__(self,l,b,h):
+        self.l=l
+        self.b=b
+        self.h=h
+    def getArea(self):
+        return self.l*self.h*self.b
+    def increaseDimensions(self):
+        self.l=self.l+1
+        self.b=self.b+1
+        self.h=self.h+1
+    def deepCopy(self,obj):
+        self.l=obj.l
+        self.b=obj.b
+        self.h=obj.h##Your code here
+
+
+
+
+
+

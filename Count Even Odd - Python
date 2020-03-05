@@ -1,0 +1,20 @@
+# Function to count even and odd
+# c_e : variable to store even count
+# c_o : variable to store odd count
+def count_even_odd(n, arr):
+    c_e = 0
+    c_o = 0
+    
+    pair = list()
+    
+    
+    for i in arr:
+        if(i%2==0):
+            c_e+=1
+        else:
+            c_o+=1
+    
+    pair.append(c_e)
+    pair.append(c_o)
+    
+    return pair

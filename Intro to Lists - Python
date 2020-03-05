@@ -1,0 +1,9 @@
+# Function to check zero at 
+# start and end index
+def check_zero(size_array, arr):
+    if(arr[0]==0 or arr[size_array-1]==0):
+        return True
+    else:
+        return False
+    # complete the if statement to check
+    # if first or last element in list is 0

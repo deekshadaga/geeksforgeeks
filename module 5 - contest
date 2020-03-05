@@ -1,0 +1,21 @@
+def has44(mylist):
+    for i in range(0,len(mylist)-1):
+        if(mylist[i]==4 and mylist[i+1]==4):
+            return True
+    return False
+    
+    
+    
+    
+    
+def avg(mylist):
+    temp=mylist
+    temp.remove(min(temp))
+    temp.remove(max(temp))
+    s=sum(temp)
+    s=s//len(temp)
+    return s
+
+
+
+

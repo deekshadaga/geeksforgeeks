@@ -1,0 +1,9 @@
+def multivar(a, *var): 
+    sum=a
+    for i in range(0,len(var)):
+        sum+=var[i]
+        
+    print (sum)    
+    ##*var takes multiple arguments inside it
+    ##print the sum of a+elements of var
+    

@@ -1,0 +1,6 @@
+# Function to sort using comparator
+def customSort(arr):
+    
+     return sorted(arr)   
+    # Your code here
+    # Hint : Should be a return statement

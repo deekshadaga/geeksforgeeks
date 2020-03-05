@@ -1,0 +1,22 @@
+# Function to sort the list
+def sort_arr(arr):
+    arr.sort()# Your code here
+
+# Function to join list elements
+# with string as delimiter
+def join_list(arr, string):
+    
+    # Complete the return statement to join list
+    return string.join(arr)
+
+# Function to reverse array elements
+def rev_arr(arr):
+    arr.reverse()# Your code here
+
+# Function to insert element at index
+def insert_arr(arr, index, element):
+    arr.insert(index,element)# Your code here
+
+# Function to pop element from array at index
+def pop_arr(arr, index):
+    arr.pop(index)# Your code here

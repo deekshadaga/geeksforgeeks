@@ -1,0 +1,7 @@
+def math_func():
+    import math
+    #import math module and print pi and e
+    print("pi =",math.pi)
+    print("e =",math.e)
+    # Hint : Use from ..... import.....
+

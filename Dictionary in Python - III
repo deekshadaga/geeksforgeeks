@@ -1,0 +1,22 @@
+def insert_dict(query, dict):
+    dict.update({query[1]:query[2]})
+    # Your code here
+    
+    
+
+# deleting from dictionary
+def del_dict(query, dict):
+    del dict[query[1]]
+    # Your code here
+    
+    
+    
+    
+
+# print marks of required name
+def print_dict(key, dict):
+    if key in dict:
+        print("Marks of {} is {}".format(key,dict[key]))
+    else:
+        print (-1)
+    # Your code here

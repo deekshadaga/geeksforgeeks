@@ -1,0 +1,9 @@
+# Function to create dictionary
+def create_dict(arr):
+    dic = dict(arr)
+    # Your code here
+    # Hint: use loop to iterate through arr
+    # and assign key value to the dict
+    
+    
+    

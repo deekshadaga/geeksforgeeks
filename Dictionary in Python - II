@@ -1,0 +1,8 @@
+def pair_sum(dict, n, arr, sum):
+    for i in dict:
+        for j in dict:
+            if ((i is not j) and (i + j == sum)):
+                return True
+    return False
+    # Your code here
+    # Hint: You can use 'in' to find if any key is in dict

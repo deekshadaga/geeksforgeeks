@@ -1,0 +1,11 @@
+void inputData()
+{   
+    int a;
+    float b;
+    char c;
+    scanf("%d",&a);
+    scanf("%f\n",&b);
+    scanf("%c",&c);
+    printf("%d %f %c",a,b,c);
+    printf("\n");
+}

@@ -1,0 +1,4 @@
+void logical(int x, int y)
+{
+    printf("%d %d %d",x&&y,x||y,!x);
+}

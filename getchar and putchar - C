@@ -1,0 +1,8 @@
+void get_put(char ch)
+{
+    // your code here
+     
+    ch = getchar();// take input using getchar
+    putchar(ch);
+    //print using putchar
+}

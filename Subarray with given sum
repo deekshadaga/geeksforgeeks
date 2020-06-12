@@ -1,0 +1,22 @@
+// Function to find the subarray with given sum k
+// arr: input array
+// n: size of array
+void subarraySum(int a[], int n, int s){
+    int sum=a[0],start=0,i;
+    for(i=1;i<=n;i++){
+        while(sum>s && start < (i-1)){
+            sum-=a[start];
+            start++;
+        }
+        if(sum==s){
+            cout<<start+1 << " "<< i;
+            break;
+        }
+        if(i<n){
+            sum+=a[i];
+        }
+    }
+    if(i>n){
+        cout<<-1;
+    }
+}

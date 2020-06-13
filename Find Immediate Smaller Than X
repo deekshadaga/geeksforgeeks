@@ -1,0 +1,16 @@
+int immediateSmaller(int a[], int n, int x)
+{
+    int min=10001,val;
+    for(int i=0;i<n;i++){
+        if(a[i]<x){
+            if(min>(x-a[i])){
+                min=x-a[i];
+                val=a[i];
+            }
+        }
+    }
+    if(min==10001)
+        return -1;
+    else
+        return val;
+}

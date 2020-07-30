@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+	cin >> t;
+	while (t--) {
+		int n, k;
+		cin >> n >> k;
+		int pre[n], arr[n];
+		for (int i = 0; i < n; i++) {
+			cin >> arr[i];
+		}
+		pre[0] = arr[0];
+		for (int i = 1; i < n; i++) {
+			pre[i] = pre[i - 1] + arr[i];
+		}
+		int max = pre[k - 1];
+		for (int i = 1; i < n - k + 1; i++) {
+			if (max < (pre[i + k - 1] - pre[i - 1]))
+				max = (pre[i + k - 1] - pre[i - 1]);
+		}
+		cout << max << endl;
+	}
+	return 0;
+}

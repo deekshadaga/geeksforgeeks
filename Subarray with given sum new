@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, curr , i, start = 0, end = 0, sum;
+		cin >> n >> sum;
+		int arr[n];
+		for (i = 0; i < n; i++)
+			cin >> arr[i];
+		curr = arr[0];
+		for (i = 1; i <= n; i++) {
+			while (curr > sum and start < i - 1) {
+				curr -= arr[start];
+				start++;
+			}
+			if (sum == curr) {
+				cout << start + 1 << " " << end + 1<< endl;
+				break;
+			}
+			if (i < n) {
+				curr += arr[i];
+				end++;
+			}
+		}
+		if (i == n + 1) {
+			cout << -1 << endl;
+		}
+	}
+	return 0;
+}

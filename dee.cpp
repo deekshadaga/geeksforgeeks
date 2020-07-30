@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int countFreq(int arr[], int n)
+{
+	unordered_map<int, int> freq;
+	int count = 0;
+	for (int i = 0; i < n; i++)
+		freq[arr[i]]++;
+	for (int i = 0; i < n; i++) {
+		if (freq[arr[i]] != -1)
+		{
+			count += (2 * (freq[arr[i]] / 2));
+			freq[arr[i]] = -1;
+		}
+	}
+	return count;
+}
+
+
+int main() {
+#ifndef ONLINE_JUDGE
+	//get input from input1.txt
+	freopen("input1.txt", "r", stdin);
+	//write output in output1.txt
+	freopen("output1.txt", "w", stdout);
+#endif
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		int arr[n];
+		for (int i = 0; i < n; i++) {
+			cin >> arr[i];
+		}
+		cout << countFreq(arr, n) << endl;
+	}
+	return 0;
+}

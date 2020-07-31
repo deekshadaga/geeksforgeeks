@@ -1,0 +1,14 @@
+void merge(int ar1[], int ar2[], int n, int m) 
+{ 
+    for (int i=m-1; i>=0; i--){
+        int j, last = ar1[n-1]; 
+        for (j=n-2; j >= 0 && ar1[j] > ar2[i]; j--){ 
+            ar1[j+1] = ar1[j]; 
+        }
+  
+        if(j != n-2 || last > ar2[i]){ 
+            ar1[j+1] = ar2[i]; 
+            ar2[i] = last;
+        }
+    }
+} 

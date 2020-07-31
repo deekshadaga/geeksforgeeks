@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, max = 0, curr, idx, len, s1 = 0, s2 = 0;
+		cin >> n;
+		bool a1[n], a2[n];
+		int diff[2 * n + 1];
+		memset(diff, -1, sizeof(diff));
+		for (int i = 0; i < n; i++) {
+			cin >> a1[i];
+		}
+		for (int i = 0; i < n; i++) {
+			cin >> a2[i];
+		}
+		for (int i = 0; i < n ; i++) {
+			s1 += a1[i];
+			s2 += a2[i];
+			curr = s1 - s2;
+			idx = n + curr;
+			if (curr == 0) {
+				max = i + 1;
+			}
+			else if (diff[idx] == -1) {
+				diff[idx] = i;
+			}
+			else {
+				len = i - diff[idx];
+				if (len > max) {
+					max = len;
+				}
+			}
+		}
+		cout << max << endl;
+	}
+	return 0;
+}

@@ -1,0 +1,16 @@
+bool subArrayExists(int arr[], int n)
+{
+    unordered_map<int,int> sum;
+    int pre=0;
+    for(int i=0;i<n;i++){
+        pre+=arr[i];
+        if(sum[pre]==1 || pre==0){
+            return true;
+        }
+        else{
+            sum[pre]=1;
+        }
+        
+    }
+    return false;
+}

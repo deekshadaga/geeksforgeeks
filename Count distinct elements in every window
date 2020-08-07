@@ -1,0 +1,19 @@
+vector <int> countDistinct (int arr[], int n, int k)
+{
+    int i, count;
+	unordered_map<int, int> hash;
+	vector<int> c;
+	for (int i = 0; i < n - k + 1; i++) {
+		hash.clear();
+		count = 1;
+		hash[arr[i]] = 1;
+		for (int j = i; j < i + k; j++) {
+			if (hash[arr[j]] != 1) {
+				hash[arr[j]] = 1;
+				count++;
+			}
+		}
+		c.push_back(count);
+	}
+	return c;
+}

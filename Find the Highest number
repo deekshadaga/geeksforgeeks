@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n, i;
+		cin >> n;
+		int arr[n];
+		for (i = 0; i < n; i++) cin >> arr[i];
+		int l = 0, r = n - 1, mid, ans = arr[n-1] ;
+		if(arr[0] > arr[1])
+			ans = arr[0];
+		else {
+		while (l <= r) {
+			mid = l + ((r - l) / 2);
+			if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) {
+				ans = arr[mid];
+				break;
+			}
+			else if (arr[mid] < arr[mid + 1])
+				l = mid + 1 ;
+			else
+				r = mid - 1 ;
+		}
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}

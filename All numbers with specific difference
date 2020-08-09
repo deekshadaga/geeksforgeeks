@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n, d, i, count = 0;
+		cin >> n >> d;
+		int l = 0, r = n - 1, mid;
+		while (l <= r) {
+			mid = l + (r - l) / 2;
+			int temp = mid, sum = 0;
+			while (temp > 0) {
+				sum += temp % 10;
+				temp /= 10;
+			}
+			if ((mid - sum) < d) {
+				l = mid + 1;
+			}
+			else {
+				count = n - mid + 1;
+				r = mid - 1;
+			}
+		}
+		cout << count << endl;
+	}
+	return 0;
+}

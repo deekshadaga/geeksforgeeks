@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool binarysearch(int arr[], int n, int x) {
+	int l = 0, r = n - 1, mid;
+	while (l <= r) {
+		mid = l + ((r - l) / 2);
+		if (arr[mid] == x) {
+			return true;
+		}
+		else if (arr[mid] < x)
+			l = mid + 1;
+		else
+			r = mid - 1;
+	}
+	return false;
+}
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n, i, m;
+		cin >> m >> n;
+		int arr1[m], arr2[n];
+		for (i = 0; i < m; i++)
+			cin >> arr1[i];
+		for (i = 0; i < n; i++)
+			cin >> arr2[i];
+		sort(arr1, arr1 + m);
+		for (i = 0; i < n; i++) {
+			if (!binarysearch(arr1, m, arr2[i]))
+				break;
+		}
+		if (i == n)
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+	}
+	return 0;
+}

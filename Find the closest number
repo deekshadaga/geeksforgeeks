@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	scanf("%d", &t);
+	while (t--) {
+		int n, i, x;
+		cin >> n >> x;
+		int arr[n], ans;
+		for (i = 0; i < n; i++) cin >> arr[i];
+		if (x < arr[0])
+			cout << arr[0] << endl;
+		else if (x > arr[n - 1])
+			cout << arr[n - 1] << endl;
+		else {
+			int l = 0, r = n - 1, mid, min = INT_MAX;
+			while (l <= r) {
+				mid = l + ((r - l) / 2);
+				if (arr[mid] == x) {
+					ans = arr[mid];
+					break;
+				}
+				else if ((x - arr[mid - 1]) == (arr[mid] - x)) {
+					ans = arr[mid];
+					break;
+				}
+				else if ((x - arr[mid]) == (arr[mid + 1] - x)) {
+					ans = arr[mid + 1];
+					break;
+				}
+				else {
+					if (abs(x - arr[mid]) < min) {
+						min = abs(x - arr[mid]);
+						ans = arr[mid];
+					}
+					if (x > arr[mid])
+						l = mid + 1;
+					else
+						r = mid - 1;
+				}
+			}
+			cout << ans << endl;
+		}
+	}
+	return 0;
+}

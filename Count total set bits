@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin >>t;
+	while(t--){
+	    int n,bits=0;
+	    cin >>n;
+	    for(int i=0;i<=n;i++){
+	        int temp = i;
+	        int count=0;
+	        while(temp){
+	            temp=temp&(temp-1);
+	            count++;
+	        }
+	        bits+=count;
+	    }
+	    cout<<bits<<endl;
+	}
+	return 0;
+}

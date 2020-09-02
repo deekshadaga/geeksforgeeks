@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,s;
+        cin >> n >> s;
+        if(s>n*9 || (s==0 && n>1)){
+            cout << -1 << endl;
+            continue;
+        }
+        for(int i=0;i<n;i++){
+            if(s>=9) {
+                cout << 9;
+                s-=9;
+            }
+            else{
+                cout << s;
+                s=0;
+            }
+        }
+        cout << endl;
+    }
+	return 0;
+}

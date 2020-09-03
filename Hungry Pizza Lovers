@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct order{
+    int x,y,o,f;
+};
+bool cmp(order a,order b){
+    if(a.f != b.f) return(a.f < b.f);
+    else return(a.o < b.o);
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        order arr[n];
+        for(int i=0;i<n;i++) {
+            cin >> arr[i].x >> arr[i].y ;
+            arr[i].o = i+1;
+            arr[i].f = arr[i].x+arr[i].y;
+        }
+        sort(arr,arr+n,cmp);
+        for(int i =0;i<n;i++){
+            cout << arr[i].o << endl;
+        }
+    }
+	return 0;
+}

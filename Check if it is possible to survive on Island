@@ -1,0 +1,19 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+    int s,n,m;
+    cin >> s >> n >> m;
+    int req = s*m,day=s-(s/7);
+    if(day*n < req || n<m){
+        cout << -1 << endl;
+        continue;
+    }
+    if(req%n==0) cout << req/n << endl;
+    else cout << (req/n)+1 << endl;
+    }
+	return 0;
+}

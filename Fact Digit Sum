@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+/*int fact(int n){
+    int f=1;
+    if(n==0 || n==1) return f;
+    f=f*fact(n-1);
+}*/
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    //int arr[10];
+    //for(int i=1;i<10;i++) arr[i] = fact(i);
+    int arr[]={1 , 1 , 2 , 6 , 24 , 120 , 720 , 5040 , 40320 , 362880 };
+    while(t--){
+        vector <int> ans;
+        int sum;
+        cin >> sum;
+        while(sum){
+            for(int i=9;i>0;i--){
+                if(arr[i]<=sum){
+                    sum-=arr[i];
+                    ans.push_back(i);
+                    break;
+                }
+            }
+        }
+        for(int i=ans.size()-1;i>=0;i--) cout << ans[i];
+        cout << endl;
+    
+    }
+	return 0;
+}

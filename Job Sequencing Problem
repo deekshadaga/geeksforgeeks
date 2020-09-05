@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct job{
+  int a,b,c;
+  //bool res=true;
+};
+
+bool comp(job j1 , job j2){
+    //if(j1.b!=j2.b)
+      //  return( j1.b > j2.b);
+    //else
+    return( j1.c > j2.c);
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        job arr[n];
+        int p=0,count=0;
+        for(int i=0;i<n;i++) cin >> arr[i].a >> arr[i].b >> arr[i].c;
+        sort(arr,arr+n,comp);
+        bool res[n];
+        for(int i=0;i<n;i++) res[i]=true;
+        //for(int i=0;i<n;i++) cout << arr[i].b << arr[i].c << endl;
+        //cout << endl;
+        for(int i=0;i<n;i++){
+            for(int j = min(n,arr[i].b)-1;j>=0;j--){
+                //cout << "else"<<endl;
+                if(res[j]) {
+                    p+=arr[i].c;
+                    res[j]=false;
+                    count++;
+                    break;
+                }
+                
+            }
+            //for(int i=0;i<n;i++) cout << res[i];
+            //cout << endl;
+        }
+        cout << count << " " << p << endl;
+    }
+	return 0;
+}

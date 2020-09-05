@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,c;
+        cin >> n;
+        int arr[n];
+        for(int i=0;i<n;i++) cin >> arr[i];
+        cin >> c;
+        int pf=0;
+        unordered_set <int> cap;
+        unordered_map<int,int>idx;
+        for(int i=0;i<n;i++){
+            if(cap.size()<c){
+                if(cap.find(arr[i])==cap.end()){
+                    pf++;
+                    cap.insert(arr[i]);
+                }
+                idx[arr[i]]=i;
+            }
+            else{
+                if(cap.find(arr[i])==cap.end()){
+                    int lru=INT_MAX,val;
+                    for(auto j=cap.begin();j!=cap.end();j++){
+                        if(idx[*j]<lru){
+                            lru=idx[*j];
+                            val=*j;
+                        }
+                    }
+                    cap.erase(val);
+                    cap.insert(arr[i]);
+                    pf++;
+                }
+                idx[arr[i]]=i;
+            }
+        }
+        cout << pf << endl;
+    }
+	return 0;
+}

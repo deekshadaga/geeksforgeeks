@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+long long gf(int n){
+    if(n==0) return 0;
+    if(n==1) return 1;
+    return ((gf(n-2)*gf(n-2))-gf(n-1));
+}
+
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        for(int i=0;i<n;i++){
+            cout << gf(i) << " ";
+        }
+        cout << endl;
+    }
+	return 0;
+}

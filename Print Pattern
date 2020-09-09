@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+void ppattern(int n, int temp) {
+	cout << temp << " ";
+	temp += 5;
+	if (temp == n) {
+	    cout << temp;
+		return;
+	}
+	else {
+		ppattern(n, temp);
+	}
+}
+
+void pattern(int n, int temp) {
+	cout << temp << " ";
+	temp -= 5;
+	if (temp <= 0) {
+		ppattern(n, temp);
+		return;
+	}
+	else {
+		pattern(n, temp);
+	}
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		int temp = n;
+		pattern(n, temp);
+		cout << endl;
+	}
+	return 0;
+}

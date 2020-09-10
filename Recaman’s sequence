@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+void recaman(int n){
+    vector<int> v;
+    int prev=0;
+    v.push_back(prev);
+    for(int i=1;i<n;i++){
+        int val=prev-i;
+        if(val<0 || find(v.begin(),v.end(),val)!=v.end()){
+            val=prev+i;
+            v.push_back(val);
+        }
+        else{
+            v.push_back(val);
+        }
+        prev=val;
+    }
+    for(int i=0;i<v.size();i++) cout << v[i]<<" ";
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        recaman(n);
+        cout << endl;
+    }
+	return 0;
+}

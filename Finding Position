@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,a=1,i=0;
+        cin >>n;
+        cout << (1<<int(log2(n)))<<endl;
+    }
+	return 0;
+}

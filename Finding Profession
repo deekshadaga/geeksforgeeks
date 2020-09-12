@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool prof(int l,int p){
+    if(l==1) return 1;
+    if(prof(l-1,(p+1)/2)==0) return (p%2)? 0 : 1;
+    return (p%2)? 1 : 0; 
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int l,p;
+        cin >> l >> p;
+        if(prof(l,p)) cout << "Engineer" << endl;
+        else cout <<"Doctor" <<endl;
+    }
+	return 0;
+}

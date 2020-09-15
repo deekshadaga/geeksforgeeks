@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,k;
+        cin >> n >>k;
+        cout << n-((k-1)/2) << " "; 
+        for(int i=1;i<k;i++){
+            if(i%2==0) cout << 1 <<" ";
+            else cout << 0 <<" ";
+        }
+        cout << endl;
+    }
+	return 0;
+}

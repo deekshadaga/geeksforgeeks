@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int k;
+        cin >> k;
+        set <int> s;
+        while(k--){
+            int temp,n;
+            cin >> n;
+            for(int i=0;i<n;i++) {
+                cin >> temp;
+                s.insert(temp);
+            }
+        }
+        for (auto it : s) 
+        cout << it << " "; 
+        cout << endl;
+    }
+	return 0;
+}

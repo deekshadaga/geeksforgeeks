@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+void combo(vector<int> arr,vector<vector<int>>&res,int sum,vector<int>&ans,int curr,int n){
+    if(sum<0) return;
+    if(sum==0) {
+        res.push_back(ans);
+        return;
+    }
+    while((curr<n) && ((sum-arr[curr])>=0)){
+        ans.push_back(arr[curr]);
+        combo(arr,res,sum-arr[curr],ans,curr,n);
+        curr++;
+        ans.pop_back();
+    }
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,sum,temp;
+        vector<int> arr;
+        cin >> n;
+        for(int i=0;i<n;i++){
+            cin >> temp;
+            if(find(arr.begin(),arr.end(),temp)==arr.end())
+                arr.push_back(temp);
+        }
+        sort(arr.begin(),arr.end());
+        cin >> sum;
+        vector<vector<int>> res;
+        vector<int> ans;
+        n=arr.size();
+        combo(arr,res,sum,ans,0,n);
+        if (res.size() == 0) cout << "Empty";
+        for(int i=0;i<res.size();i++){
+            cout << "(" << res[i][0];
+            for(int j=1;j<res[i].size();j++) cout <<" "<<res[i][j];
+            cout <<")";
+        }
+        cout << endl;
+    }
+	return 0;
+}

@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+void lswap( string s,int k,string &ans,int curr){
+    if(k==0) return;
+    char cmax=s[curr];
+    for(int i=curr+1;i<s.length();i++){
+        if(cmax<s[i]) cmax=s[i];
+    }
+    if(cmax!=s[curr]) k--;
+    for(int i=curr;i<s.length();i++){
+        if(s[i]==cmax){
+            swap(s[curr],s[i]);
+            ans=max(s,ans);
+            lswap(s,k,ans,curr+1);
+            swap(s[curr],s[i]);
+        }
+    }
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int k;
+        string s;
+        cin >> k;
+        cin >> s;
+        string ans=s;
+        lswap(s,k,ans,0);
+        cout<< ans << endl;
+    }
+	return 0;
+}

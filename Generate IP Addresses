@@ -1,0 +1,29 @@
+void gip(vector<string> &ip,string s,int n,int curr=0, int count=0,string ans = ""){
+    if(count==4 && n==curr){
+        ans.pop_back();
+        ip.push_back(ans);
+        return;
+    }
+    
+    if(n<curr+1) return;
+    ans=ans+s.substr(curr,1)+".";
+    //cout << "ans " << ans;
+    gip(ip,s,n,curr+1,count+1,ans);
+    ans.erase(ans.end()-2,ans.end());
+    
+    if(n<curr+2 || s[curr]=='0') return;
+    ans=ans+s.substr(curr,2)+".";
+    gip(ip,s,n,curr+2,count+1,ans);
+    ans.erase(ans.end()-3,ans.end());
+    
+    if(n<curr+3 || stoi(s.substr(curr,3))>255) return;
+    ans=ans+s.substr(curr,3)+".";
+    gip(ip,s,n,curr+3,count+1,ans);
+    ans.erase(ans.end()-4,ans.end());
+}
+
+vector<string> genIp(string &s) {
+    vector<string> ip;
+    gip(ip,s,s.size());
+    return (ip);
+}

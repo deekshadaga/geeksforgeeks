@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+void subset(int arr[],int n,int i,vector<vector<int>> &ans,vector<int> res)
+{
+    if(i==n) {
+        if(find(ans.begin(),ans.end(),res)==ans.end()) ans.push_back(res);
+        return;
+    }
+    subset(arr,n,i+1,ans,res);
+    res.push_back(arr[i]);
+    subset(arr,n,i+1,ans,res);
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        vector<vector<int>> ans;
+        vector<int> res;
+        int arr[n];
+        for(int i=0;i<n;i++) cin >> arr[i];
+        sort(arr,arr+n);
+        subset(arr,n,0,ans,res);
+        sort(ans.begin(),ans.end());
+        for(int i=0;i<ans.size();i++){
+            cout <<"(";
+            int m=ans[i].size();
+            for(int j=0;j<m;j++){
+                if(j==m-1){
+                    cout << ans[i][j];
+                    break;
+                }
+                cout << ans[i][j] << " ";
+            }
+            //cout << endl;
+            cout << ")";
+        }
+        cout << endl;
+    }
+	return 0;
+}

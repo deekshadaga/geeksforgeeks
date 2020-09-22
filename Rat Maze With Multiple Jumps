@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define MAX 10
+
+bool path(int arr[][MAX],int n,int visited[MAX][MAX],int i,int j){
+    if(i==n-1 && j==n-1){
+        visited[i][j]=1;
+        return true;
+    }
+    if(i>=0 && j>=0 && i<n && j<n && visited[i][j]==0){
+        visited[i][j]=1;
+        int m=arr[i][j];
+        for(int temp=1;temp<=m;temp++){
+            if(path(arr,n,visited,i,j+temp)==true) return true;
+            if(path(arr,n,visited,i+temp,j)==true) return true;
+        }
+        visited[i][j]=0;
+        return false;
+    }
+    return false;
+}
+int main() {
+    int t;
+    cin >> t;
+    while(t--){
+    	int n;
+    	cin >> n;
+    	int arr[MAX][MAX],visited[MAX][MAX]={0};
+    	for(int i=0;i<n;i++){
+    	    for(int j=0;j<n;j++) cin >> arr[i][j];
+    	}
+    	//bool val=false;
+    	bool val = path(arr,n,visited,0,0);
+    	if(val==false) cout << -1 << endl;
+    	else{
+    	   for(int i=0;i<n;i++){
+    	        for(int j=0;j<n;j++) cout << visited[i][j] << " ";
+    	        cout << endl;
+    	   }
+    	}
+    }
+	return 0;
+}

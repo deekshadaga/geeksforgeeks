@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define MAX 10
+
+bool safe(int i,int j,int n,int space[MAX][MAX]){
+    int k,l;
+    for(k=0;k<j;k++){
+        if(space[i][k]==1) return false;
+    }
+    for(k = i, l = j; k<n && l>=0; k++, l--){
+        if(space[k][l]==1) return false;
+    }
+    for(k = i, l = j; k >= 0 && l >=0; k--, l--){
+        if(space[k][l]==1) return false;
+    }
+    return true;
+}
+
+void pos(int n,int ans[], int space[MAX][MAX],int curr,vector<vector<int>> &res){
+    if(curr>=n){
+        vector<int> final;
+        for(int i=0;i<n;i++) final.push_back(ans[i]);
+        res.push_back(final);
+        return;
+    }
+    for(int i=0;i<n;i++){
+        if(safe(i,curr,n,space)){
+            space[i][curr]=1;
+            ans[i]=curr+1;
+            pos(n,ans,space,curr+1,res);
+            space[i][curr]=0;
+        }
+    }
+}
+
+void queen(int n,vector<vector<int>> &res){
+    int ans[n];
+    int space[MAX][MAX]={0};
+    pos(n,ans,space,0,res);
+    return;
+}
+
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        vector<vector<int>> res;
+        queen(n,res);
+        if(res.size()==0) cout << -1;
+        else{
+            sort(res.begin(),res.end());
+            for(int i=0;i<res.size();i++){
+                cout << "[";
+                for(int j=0;j<res[i].size();j++){
+                    cout << res[i][j] << " ";
+                }
+                cout <<"] ";
+            }
+        }
+        cout << endl;
+    }
+	return 0;
+}

@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int bin_search(int A[], int left, int right, int k)
+{
+    if(left>right) return -1;
+    int mid=left+(right-left)/2;
+    //cout << "mid = "<< A[mid] << " left = "<< A[left] << " right = "<< A[right] << endl;
+    if(A[mid]==k) return mid;
+    if(A[left]<=A[mid]){
+        if(k<=A[mid] && k>=A[left]) return bin_search(A,left,mid-1,k);
+        return bin_search(A,mid+1,right,k);
+    }
+    if(k<=A[right] && k>=A[mid]) return bin_search(A,mid+1,right,k);
+    return bin_search(A,left,mid-1,k);
+}
+
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,k;
+        cin >> n;
+        int arr[n];
+        for(int i=0;i<n;i++) cin >> arr[i];
+        cin >> k;
+        cout << bin_search(arr,0,n-1,k) << endl;
+    }
+	return 0;
+}

@@ -1,0 +1,13 @@
+class Solution{
+public:
+    int fib(int N){
+        if(N==1 || N==0) return N;
+        return calc(N,0,1,0);
+    }
+    int calc(int n,int a,int b,int ans){
+        if(n==1) return ans;
+        int c = (a+b)%10;
+        ans = c;
+        calc(n-1,b,c,ans);
+    }
+};

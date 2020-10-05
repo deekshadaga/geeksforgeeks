@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool safe(long long n,long long m,long long arr[],long long mid){
+    long long stud=1;
+    long long curr=0;
+    for(long long i=0;i<n;i++){
+        if(arr[i]> mid) return false;
+        if(curr+arr[i]>mid){
+            stud++;
+            curr=arr[i];
+            if(stud>m) return false;
+        }
+        else curr+=arr[i];
+    }
+    return true;
+}
+
+long long pages(long long n,long long arr[],long long m){
+    if(n<m) return -1;
+    long long sum=0;
+    for(long long i=0;i<n;i++) sum+=arr[i];
+    long long start=0,end=sum;
+    long long res=INT_MAX;
+    while(start<=end){
+        long long mid=start+(end-start)/2;
+        if(safe(n,m,arr,mid)){
+            res=min(res,mid);
+            end=mid-1;
+        }
+        else{
+            start=mid+1;
+        }
+    }
+    return res;
+}
+
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        long long n;
+        cin >> n;
+        long long arr[n];
+        long long m;
+        for(long long i=0;i<n;i++) cin >> arr[i];
+        cin >> m;
+        cout << pages(n,arr,m) << endl;
+    }
+	return 0;
+}

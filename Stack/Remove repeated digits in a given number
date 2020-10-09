@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        long long n;
+        cin >> n;
+        stack<int> s;
+        s.push(n%10);
+        n=n/10;
+        while(n){
+            if((n%10)!=s.top()) s.push(n%10);
+            n/=10;
+        }
+        while(!s.empty()){
+            cout<<s.top();
+            s.pop();
+        }
+        cout << endl;
+    }
+	return 0;
+}

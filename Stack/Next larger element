@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+void nge(ll arr[],ll n){
+    stack<ll> s;
+    vector<ll> ans(n);
+    for(int i = n-1; i >= 0; i--) {
+	    while(!s.empty() && arr[i] >= s.top()) s.pop();
+        ans[i] = s.empty() ? -1 : s.top();
+	    s.push(arr[i]);
+    }
+    for(int i = 0; i < n; i++) cout << ans[i] << " ";
+}
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        ll n,i;
+        cin >> n;
+        ll arr[n];
+        for(i=0;i<n;i++) cin >> arr[i];
+        nge(arr,n);
+        cout<<endl;
+    }
+	return 0;
+}

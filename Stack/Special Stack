@@ -1,0 +1,31 @@
+stack<int> mine;
+void push(int a){
+    if(s.empty()){
+        s.push(a);
+        mine.push(a);
+        return;
+    }
+    if(a<=mine.top()) mine.push(a);
+    s.push(a);
+    return;
+}
+bool isFull(int n)
+{
+     return (s.size()>=n);
+}
+bool isEmpty()
+{
+    return s.empty();
+}
+int pop()
+{
+    if(s.top()==mine.top()) mine.pop();
+    int t=s.top();
+    s.pop();
+    return t;
+}
+
+int getMin()
+{
+   return mine.top();
+}

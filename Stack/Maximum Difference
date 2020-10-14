@@ -1,0 +1,21 @@
+int findMaxDiff(int A[], int n)
+{
+    stack<int> s;
+    int ls[n], rs[n];
+    for(int i=0;i<n;i++){
+        while(!s.empty() && s.top()>=A[i]) s.pop();
+        ls[i]=s.empty()?0:s.top();
+        s.push(A[i]);
+    }
+    while(!s.empty()) s.pop();
+    for(int i=n-1;i>=0;i--){
+        while(!s.empty() && s.top()>=A[i]) s.pop();
+        rs[i]=s.empty()?0:s.top();
+        s.push(A[i]);
+    }
+    int diff=0;
+    for(int i=0;i<n;i++){
+        diff=max(diff, abs(ls[i]-rs[i]));
+    }
+    return diff;
+}

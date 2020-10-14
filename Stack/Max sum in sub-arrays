@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        unsigned long long int n,p,sum=0;
+        cin>>n;
+        stack<unsigned long long int> s;
+        
+        for(int i=0;i<n;i++){
+            if(i<2){
+                cin>>p;
+                sum=sum+p;
+                s.push(p);
+            }
+            else{
+                cin>>p;
+                if(s.top()+p>sum)
+                    sum=s.top()+p;
+                    s.push(p);
+            }
+        }
+        cout<<sum<<endl;
+	}
+	return 0;
+}

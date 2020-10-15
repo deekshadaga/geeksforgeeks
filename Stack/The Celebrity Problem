@@ -1,0 +1,19 @@
+int getId(int M[MAX][MAX], int n)
+{
+    stack<int> s;
+    for(int i=0;i<n;i++) s.push(i);
+    while(s.size()>1){
+        int a=s.top();
+        s.pop();
+        int b=s.top();
+        s.pop();
+        if(M[a][b]==1) s.push(b);
+        else s.push(a);
+    }
+    int x=s.top();
+    for(int i=0;i<n;i++){
+        if( i!=x && (M[i][x]==0 || M[x][i]==1 )) return -1;
+    }
+    return x;
+    
+}

@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        int arr[n];
+        for(int i=0;i<n;i++) cin >> arr[i];
+        int l[n+1],r[n+1],ans[n+1];
+        stack<int>s;
+        for(int i=0;i<=n;i++){
+            ans[i]=0;
+            l[i]=-1;
+            r[i]=n;
+        }
+        for(int i=0;i<n;i++){
+            while(!s.empty() && arr[s.top()]>=arr[i]) s.pop();
+            if(!s.empty()) l[i]=s.top();
+            s.push(i);
+        }
+        while(!s.empty())s.pop();
+        for(int i=n-1;i>=0;i--){
+            while(!s.empty() && arr[s.top()]>=arr[i]) s.pop();
+            if(!s.empty()) r[i]=s.top();
+            s.push(i);
+        }
+        for(int i=0;i<n;i++){
+            int len=r[i]-l[i]-1;
+            ans[len]=max(ans[len],arr[i]);
+        }
+        //for(int i=0;i<=n;i++) cout << ans[i] << " ";
+        //cout << endl;
+        //for(int i=0;i<=n;i++) cout << l[i] << " ";
+        //cout << endl;
+        //for(int i=0;i<=n;i++) cout << r[i] << " ";
+        //cout << endl;
+        for(int i=n-1;i>=1;i--) ans[i]=max(ans[i],ans[i+1]);
+        for(int i=1;i<=n;i++) cout << ans[i] << " ";
+        cout << endl;
+    }
+	return 0;
+}

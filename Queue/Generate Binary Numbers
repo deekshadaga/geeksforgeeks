@@ -14,7 +14,7 @@ void printBinary(int n){
 }
 int main()
 {
-	int t;
+    int t;
     scanf("%d",&t);
     while(t--){
         int n;

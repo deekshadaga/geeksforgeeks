@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,k,t;
+        cin >> n >> k;
+        priority_queue<int> pq;
+        while(n--) {
+            cin >> t;
+            pq.push(t);
+        }
+        long long sum=0;
+        while(k--){
+            sum+=pq.top();
+            t=pq.top();
+            pq.pop();
+            pq.push(t/2);
+        }
+        cout << sum << endl;
+    }
+	return 0;
+}

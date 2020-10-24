@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int k;
+    scanf("%d",&k);
+    while(k--){
+        priority_queue<int,vector<int>,greater<int>>q;
+        int n,a,t,x=0,y=0;
+        cin>>n;
+        for(int i=0;i<n;i++){
+            cin>>a;
+            q.push(a);
+        }
+        while(!q.empty()){
+            t=q.top();
+            q.pop();
+            x=x*10+t;
+            if(!q.empty()){
+                t=q.top();
+                q.pop();
+                y=y*10+t;
+            }
+        }
+        cout << x+y << endl;
+    }
+	return 0;
+}

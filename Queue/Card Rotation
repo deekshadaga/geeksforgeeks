@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        int n;
+        cin >> n;
+        int arr[n];
+        memset(arr,0,n);
+        queue<int> q;
+        for(int i=1;i<=n;i++) q.push(i);
+        int k=1,count=1;
+        while(!q.empty()){
+            for(int i=0;i<count;i++){
+                int x=q.front();
+                q.pop();
+                q.push(x);
+            }
+            arr[q.front()-1]=k;
+            q.pop();
+            k++;
+            count++;
+        }
+        for(int i=0;i<n;i++) cout << arr[i] << " ";
+        cout << endl;
+    }
+	return 0;
+}

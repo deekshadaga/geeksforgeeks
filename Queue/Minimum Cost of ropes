@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+    scanf("%d",&t);
+    while(t--){
+        long long n,cost=0;
+        cin >> n;
+        priority_queue<long long,vector<long long>,greater<long long>> pq;
+        for(long long i=0;i<n;i++){
+            long long te;
+            cin >> te;
+            pq.push(te);
+        }
+        while(pq.size()!=1){
+            long long a,b;
+            a=pq.top();
+            pq.pop();
+            b=pq.top();
+            pq.pop();
+            //cout << a << "  " << b << endl;
+            cost+=(a+b);
+            pq.push(a+b);
+        }
+        cout << cost << endl;
+    }
+	return 0;
+}

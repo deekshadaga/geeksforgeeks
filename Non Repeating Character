@@ -1,0 +1,13 @@
+char nonrepeatingCharacter(string S)
+{
+    int i;
+    unordered_map<char,int> m;
+    for(i=0;i<S.length();i++){
+        m[S[i]]++; 
+    }
+    for(i=0;i<S.length();i++){
+        if(m[S[i]]==1) break;
+    }
+    if(i==S.length()) return('$');
+    return S[i];
+}

@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int k;
+    scanf("%d",&k);
+    cin.ignore();
+    while(k--){
+        string s,o,n,t;
+        getline(cin,s);
+        getline(cin,o);
+        getline(cin,n);
+        //cout << s <<" "<< o<<" " << n<< endl;
+        int l=o.length();
+        for(int i=0;i<s.length();i++){
+            t=s.substr(i,l);
+            if(t==o) s.replace(i,l,n);
+        }
+        cout << s << endl;
+    }
+	return 0;
+}

@@ -1,0 +1,23 @@
+int trappingWater(int h[], int n){
+    int *l,*r,*lm,*rm;
+    l=h; lm=h; r=&h[n-1]; rm=&h[n-1];
+    int sum=0;
+    int i=0;
+    while(l!=r){
+        if(*lm<*l){
+            lm=l;
+        }
+        if(*rm<*r){
+            rm=r;
+        }
+        if(*lm<*rm){
+            sum+=*lm-*l;
+            l++;
+        }
+        else{
+            sum+=*rm-*r;
+            r--;
+        }
+    }
+    return sum;
+}

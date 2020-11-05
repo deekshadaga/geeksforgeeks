@@ -1,0 +1,17 @@
+class Solution{
+public:
+    int isPallindrome(long long int N){
+        string num="";
+        while(N){
+            num+=to_string(N%2);
+            N/=2;
+        }
+        int l=0,r=num.length()-1;
+        while(l<r){
+            if(num[l]!=num[r]) return 0;
+            l++;
+            r--;
+        }
+        return 1;
+    }
+};

@@ -1,0 +1,25 @@
+/* Link list Node 
+struct Node
+{
+    int data;
+    struct Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+}; 
+*/
+
+/* Should return true if linked list is circular, else false */
+bool isCircular(Node *head)
+{
+   if(head==NULL) return true;
+   struct Node *temp = head;
+   while(temp->next != NULL && temp->next != head){
+       temp = temp->next;
+   }
+   if(temp->next == NULL) return false;
+   return true;
+}

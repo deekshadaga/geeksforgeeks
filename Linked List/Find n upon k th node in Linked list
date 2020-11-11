@@ -1,0 +1,28 @@
+/*The structure of the node is
+struct Node
+{
+    int data;
+    struct Node *next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+};
+*/
+int fractional_node(struct Node *head, int k)
+{
+    int count=0;
+    Node *temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+        count++;
+    }
+    int pos=ceil(count/k);
+    temp=head;
+    while(pos--){
+        temp=temp->next;
+    }
+    return temp->data;
+}

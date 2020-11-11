@@ -1,0 +1,32 @@
+/*
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+
+// function should insert node at the middle
+// of the linked list
+Node* insertInMiddle(Node* head, int x)
+{
+	struct Node *n=new Node(x);
+	struct Node *s=head;
+	struct Node *f=head;
+	if(head==NULL){
+	    head=n;
+	    return head;
+	}
+	else{
+	    while(f->next != NULL && f->next->next != NULL){
+	        f=f->next->next;
+	        s=s->next;
+	    }
+	}
+	n->next=s->next;
+	s->next=n;
+	return head;
+}

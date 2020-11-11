@@ -1,0 +1,18 @@
+/* structure for a node 
+struct Node
+{
+    int data;
+    struct Node *next;
+}; */
+
+/* Function to print nodes in a given Circular linked list */
+void printList(struct Node *head)
+{
+    struct Node *t=head;
+    while(t->next!=head){
+        printf("%d ",t->data);
+        t=t->next;
+    }
+    printf("%d ",t->data);
+    return;
+}

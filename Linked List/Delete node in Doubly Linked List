@@ -1,0 +1,44 @@
+/* Structure of Node
+struct Node
+{
+  int data;
+  struct Node *next;
+  struct Node *prev;
+  
+  Node(int x){
+      data = x;
+      next = NULL;
+      prev = NULL;
+  }
+  
+};
+*/
+
+// Function to delete the node at position x
+Node* deleteNode(Node **head_ref, int x)
+{
+    int pos=1;
+    Node *t= *head_ref;
+    while(x!=1){
+         t=t->next;
+         x--;
+    }
+    if(t->prev==NULL && t->next==NULL){
+        *head_ref=NULL;
+    }
+    else if(t->prev == NULL){
+        *head_ref=t->next;
+        t->next->prev=NULL;
+        free(t);
+    }
+    else if(t->next == NULL){
+        t->prev->next=NULL;
+        free(t);
+    }
+    else{
+        t->prev->next=t->next;
+        t->next->prev=t->prev;
+        free(t);
+    }
+    return *head_ref;
+}

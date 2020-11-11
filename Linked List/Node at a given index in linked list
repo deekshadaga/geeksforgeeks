@@ -1,0 +1,7 @@
+int GetNth(struct node* head, int index){
+    node * temp=head;
+    while(--index){
+        temp=temp->next;
+    }
+    return temp->data;
+}

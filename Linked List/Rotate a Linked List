@@ -1,0 +1,34 @@
+/*
+
+struct Node {
+    int data;
+    struct Node *next;
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+// This function should rotate list counter-clockwise
+// by k and return new head (if changed)
+
+Node* rotate(Node* head, int k)
+{
+    Node *t=head;
+    int c=1;
+    while(c!=k){
+        t=t->next;
+        c++;
+    }
+    if(t->next==NULL) return head;
+    Node *temp=t;
+    Node *temp_head=t->next;
+    while(t!=NULL && t->next!=NULL){
+        t=t->next;
+    }
+    temp->next=NULL;
+    t->next=head;
+    return temp_head;
+}

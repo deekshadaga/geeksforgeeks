@@ -1,0 +1,23 @@
+/*
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};*/
+
+// root: head node
+Node *removeDuplicates(Node *root){
+    Node *t=root;
+    while(t!=NULL && t->next!=NULL){
+        if(t->data==t->next->data){
+            t->next=t->next->next;
+        }
+        else{
+            t=t->next;
+        }
+    }
+    return root;
+}

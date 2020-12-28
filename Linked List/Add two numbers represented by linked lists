@@ -1,0 +1,46 @@
+FOR SMALL LINKED LISTS -->
+----------------------
+
+struct Node* reverse(struct Node* head){
+    Node *curr=head,*prev=NULL,*after=curr->next;
+    while(curr){
+        after=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=after;
+        //after=after->next;
+    }
+    return prev;
+} 
+struct Node* addTwoLists(struct Node* first, struct Node* second)
+{
+    if(first==NULL) return second;
+    if(second==NULL) return first;
+    Node *l1=first,*l2=second;
+    int a=0,b=0;
+    while(l1!=NULL){
+        a = a*10+l1->data;
+        l1 = l1->next;
+    }
+    while(l2!=NULL){
+        b = b*10+l2->data;
+        l2 = l2->next;
+    }
+    //cout << a <<" "<< b<<endl;
+    a=a+b;
+    //cout<<a<<endl;
+    Node* head = new Node(a%10);
+    a=a/10;
+    Node* tail = head;
+    while(a){
+        head->next=new Node(a%10);
+        a=a/10;
+        head=head->next;
+    }
+    //head=reverse(tail);
+    return reverse(tail);
+}
+
+FOR BIG LINKED LISTS -->
+--------------------
+not able to solve it. :(

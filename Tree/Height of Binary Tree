@@ -1,0 +1,18 @@
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+*/
+class Solution{
+    public:
+    int height(struct Node* node){
+        return(node)? 1+max(height(node->left),height(node->right)):0;
+    }
+};

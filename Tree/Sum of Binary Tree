@@ -1,0 +1,12 @@
+struct Node
+{
+	int key;
+	Node* left, *right;
+};
+*/
+// Function should return the sum of all the elements
+// of the binary tree
+long int sumBT(Node* root)
+{
+    return(root==NULL)?0:root->key+sumBT(root->left)+sumBT(root->right);
+}

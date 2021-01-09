@@ -1,0 +1,20 @@
+struct Node {
+    int data;
+    Node* right;
+    Node* left;
+    
+    Node(int x){
+        data = x;
+        right = NULL;
+        left = NULL;
+    }
+};
+*/
+
+/*You are required to complete this method*/
+bool search(Node* root, int x)
+{
+    if(root==NULL) return false;
+    if(root->data==x) return true;
+    return(root->data>x)? search(root->left,x):search(root->right,x);
+}

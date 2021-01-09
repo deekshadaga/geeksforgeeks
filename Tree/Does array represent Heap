@@ -1,0 +1,14 @@
+bool isMaxHeap(int a[], int n)
+{
+     for (int i=0; i<=(n-2)/2; i++)
+    {
+        // If left child is greater, return false
+        if (2*i+1 < n && a[2*i +1] > a[i])
+                return false;
+ 
+        // If right child is greater, return false
+        if (2*i+2 < n && a[2*i+2] > a[i])
+                return false;
+    }
+    return true;
+}

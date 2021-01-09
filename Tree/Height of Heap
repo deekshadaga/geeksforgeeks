@@ -1,0 +1,11 @@
+class Solution{
+public:
+    int heapHeight(int N, int arr[]){
+        int c=N-1,h=0;
+        while(c){
+            c=(c-1)/2;
+            h++;
+        }
+        return h;
+    }
+};

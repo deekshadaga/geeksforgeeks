@@ -1,0 +1,16 @@
+void fun(Node *root,vector<int> &v){
+    if(root==NULL) return;
+    if(root->left!=NULL && root->right==NULL)v.push_back(root->left->data);
+    if(root->right!=NULL && root->left==NULL)v.push_back(root->right->data);
+    if(root->left) fun(root->left,v);
+    if(root->right) fun(root->right,v);
+    return;
+}
+vector<int> noSibling(Node* node)
+{
+    vector<int> v;
+    fun(node,v);
+    if(v.empty()) v.push_back(-1);
+    else sort(v.begin(),v.end());
+    return v;
+}

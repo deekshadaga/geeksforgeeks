@@ -1,0 +1,31 @@
+METHOD 1 ( USING QUEUE ) -->
+------------------------
+
+void mirror(Node* node) 
+{
+    if(node==NULL) return;
+    queue<Node*> q;
+    q.push(node);
+    while(!q.empty()){
+        Node* t=q.front();
+        q.pop();
+        swap(t->left,t->right);
+        if(t->left) q.push(t->left);
+        if(t->right) q.push(t->right);
+    }
+    return;
+}
+
+METHOD 2 ( USING RECURSION )-->
+----------------------------
+
+void mirror(Node* node) 
+{
+    if(node == NULL) return;
+    mirror(node->left);
+    mirror(node->right);
+    Node* t=node->left;
+    node->left=node->right;
+    node->right=t;
+    return;
+}

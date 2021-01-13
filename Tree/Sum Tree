@@ -1,0 +1,11 @@
+int sumtree(Node*root){
+    if(root==NULL) return 0;
+    if(root->left==NULL && root->right==NULL) return root->data;
+    if(root->data==sumtree(root->left)+sumtree(root->right)) return 2*root->data;
+}
+bool isSumTree(Node* root)
+{
+    if(root==NULL) return true;
+    if(root->data==sumtree(root)/2) return true;
+    return false;
+}

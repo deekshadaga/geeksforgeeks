@@ -1,0 +1,21 @@
+Node* insert(Node* root, int Key)
+{
+    Node* t=root;
+    while(true){
+        if(t->data==Key) return root;
+        if(t->data>Key){
+            if(t->left==NULL){
+                t->left = new Node(Key);
+                return root;
+            }
+            t=t->left;
+        }
+        else{
+            if(t->right==NULL){
+                t->right = new Node(Key);
+                return root;
+            }
+            t=t->right;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+void fun(Node* root,int k,int &count,int &ans){
+    if(root==NULL || count>=k) return;
+    fun(root->right,k,count,ans);
+    count++;
+    if(count==k){
+        ans=root->data;
+        return;
+    }
+    fun(root->left,k,count,ans);
+
+}
+int kthLargest(Node *root, int K)
+{
+    int count=0,ans=0;
+    fun(root,K,count,ans);
+    return ans;
+}

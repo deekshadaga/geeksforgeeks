@@ -1,0 +1,12 @@
+void fun(Node *root, int l, int h, vector<int> &v){
+    if(!root) return;
+    if(root->data>l) fun(root->left,l,h,v);
+    if(root->data>=l && root->data<=h) v.push_back(root->data);
+    if(root->data<h) fun(root->right,l,h,v);
+}
+vector<int> printNearNodes(Node *root, int low, int high)
+{
+    vector<int> v;
+    fun(root,low,high,v);
+    return v;
+}

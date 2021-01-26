@@ -1,0 +1,13 @@
+int fun(Node *root){
+    if(!root) return 0;
+    int val=root->data;
+    root->data=fun(root->left)+fun(root->right);
+    return val+root->data;
+}
+void toSumTree(Node *node)
+{
+    if(!node) return;
+    fun(node);
+    return;
+}
+

@@ -1,0 +1,11 @@
+Node * inOrderSuccessor(Node *root, Node *x)
+{
+    if(root==NULL) return NULL;
+    Node *t=NULL;
+    if(root->data<=x->data) t=inOrderSuccessor(root->right,x);
+    else if(root->data>x->data) {
+        t=inOrderSuccessor(root->left,x);
+        if(t==NULL) t=root;
+    }
+    return t;
+}

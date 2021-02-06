@@ -1,0 +1,13 @@
+bool fun(Node* root,Node* &prev){
+    if(root){
+        if(!fun(root->left,prev)) return false;
+        if(prev!=NULL && root->data<= prev->data) return false;
+        prev=root;
+        return fun(root->right,prev);
+    }
+    return true;
+}
+bool isBST(Node* root) {
+    Node* prev=NULL;
+    return fun(root,prev);
+}

@@ -1,0 +1,27 @@
+Node* createNode(int data){
+    Node* root = new Node(data);
+    root->data = data;
+    root->left=NULL;
+    root->right=NULL;
+    return root;
+}
+Node *convertExpression(string str,int i)
+{
+    stack<Node*> s;
+    for(int i=str.length()-1;i>=0;i-=2){
+        if(i==str.length()-1 || str[i-1]==':' && str[i+1]==':' || str[i-1]=='?' && str[i+1]==':')
+            s.push(createNode(str[i]));
+        else{
+            //cout<<str[i]<<endl;
+            Node* l = s.top();
+            s.pop();
+            Node* r =s.top();
+            s.pop();
+            Node* root = createNode(str[i]);
+            root->left = l;
+            root->right = r;
+            s.push(root);
+        }
+    }
+    return s.top();
+}

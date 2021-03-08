@@ -1,0 +1,15 @@
+void fun(Node *root,long long &res,long long curr){
+    if(!root)return;
+    if(!root->left && !root->right){
+        curr=curr*10+(root->data);
+        res+=curr;
+        return;
+    }
+    fun(root->left,res,(curr*10)+root->data);
+    fun(root->right,res,(curr*10)+root->data);
+}
+long long treePathsSum(Node *root){
+    long long res=0,curr=0;
+    fun(root,res,curr);
+    return res;
+}

@@ -1,0 +1,46 @@
+void ZigZag(Node* root , vector<int> &v){
+    deque<Node*>q;
+    q.push_back(root);
+    v.push_back(root->data);
+    Node* temp;
+    int l=1;
+    while(!q.empty()){
+        int s=q.size();
+        for(int i=0;i<s;i++){
+            if(l%2==0){
+                temp=q.back();
+                q.pop_back();
+            }
+            else{
+                temp=q.front();
+                q.pop_front();
+            }
+            if(l%2==1){
+                if(temp->right){
+                    q.push_back(temp->right);
+                    v.push_back(temp->right->data);
+                }
+                if(temp->left){
+                    q.push_back(temp->left);
+                    v.push_back(temp->left->data);
+                }                
+            }
+            else{
+                if(temp->left){
+                    q.push_front(temp->left);
+                    v.push_back(temp->left->data);
+                } 
+                if(temp->right){
+                    q.push_front(temp->right);
+                    v.push_back(temp->right->data);
+                }
+            }
+        }
+        l++;
+    }
+}
+vector <int> zigZagTraversal(Node* root){
+	vector<int> v;
+	ZigZag(root,v);
+	return v;
+}

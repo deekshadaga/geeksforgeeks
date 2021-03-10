@@ -1,0 +1,17 @@
+vector<int> inOrder(Node* root)
+{
+    vector<int> v;
+    stack<Node*> s;
+    Node* curr=root;
+    while(curr || !s.empty()){
+        while(curr){
+            s.push(curr);
+            curr=curr->left;
+        }
+        curr=s.top();
+        s.pop();
+        v.push_back(curr->data);
+        curr = curr->right;
+    }
+    return v;
+}

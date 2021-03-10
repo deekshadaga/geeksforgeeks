@@ -1,0 +1,16 @@
+class Solution {
+public:
+    void BST(vector<int> nums,int l,int r,vector<int> &res){
+        if(l>r) return;
+        int mid=l+(r-l)/2;
+        res.push_back(nums[mid]);
+        BST(nums,l,mid-1,res);
+        BST(nums,mid+1,r,res);
+    }
+    vector<int> sortedArrayToBST(vector<int>& nums) {
+        vector<int> res;
+        int n=nums.size();
+        BST(nums,0,n-1,res);
+        return res;
+    }
+};

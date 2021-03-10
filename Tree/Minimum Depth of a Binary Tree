@@ -1,0 +1,12 @@
+void height(Node* root,int h,int &ans){
+    if(root==NULL) return;
+    if(root->left==NULL && root->right==NULL) ans=min(h,ans);
+    if(root->left) height(root->left,h+1,ans);
+    if(root->right) height(root->right,h+1,ans);
+}
+int minDepth(Node *node) {
+    if(node==NULL) return 0;
+    int h=1,ans=INT_MAX;
+    height(node,h,ans);
+    return ans;
+}

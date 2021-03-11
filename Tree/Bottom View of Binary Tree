@@ -1,0 +1,23 @@
+vector <int> bottomView(Node *root)
+{
+   vector<int> res;
+    map<int,vector<int>> m;
+    int h=0;
+    queue <pair<Node*,int>> q;
+    q.push(make_pair(root,h));
+    while(!q.empty()){
+        pair<Node*,int> t=q.front();
+        q.pop();
+        h=t.second;
+        Node* node=t.first;
+        m[h].push_back(node->data);
+        if(node->left) q.push(make_pair(node->left,h-1));
+        if(node->right) q.push(make_pair(node->right,h+1));
+    }
+    map<int,vector<int>> :: iterator it;
+    for(it=m.begin();it!=m.end();it++){
+        int n=it->second.size();
+        res.push_back(it->second[n-1]);
+    }
+    return res;
+}

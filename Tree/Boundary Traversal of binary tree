@@ -1,0 +1,38 @@
+void lb(Node* root, vector<int> &res){
+    if(!root) return;
+    if(root->left){
+        res.push_back(root->data);
+        lb(root->left,res);
+    }
+    else if(root->right){
+        res.push_back(root->data);
+        lb(root->right,res);
+    }
+}
+void ln(Node* root, vector<int> &res){
+   if(!root) return; 
+   ln(root->left,res);
+   if(!root->left && !root->right) res.push_back(root->data);
+   ln(root->right,res);
+}
+void rb(Node* root, vector<int> &res){
+    if(!root) return; 
+    if(root->right){
+        rb(root->right,res);
+        res.push_back(root->data);
+    }
+    else if(root->left){
+        rb(root->left,res);
+        res.push_back(root->data);
+    }
+}
+vector <int> printBoundary(Node *root)
+{
+    vector<int> res;
+    if(!root) return res;
+    res.push_back(root->data);
+    lb(root->left,res);
+    ln(root,res);
+    rb(root->right,res);
+    return res;
+}

@@ -1,0 +1,16 @@
+void fun(Node*root,int l,int h, int &count) {
+    if(!root) return ;
+    if(root->data >= l && root->data <= h ){
+        count++;
+        fun(root->left,l,h,count);
+        fun(root->right,l,h,count);
+    }
+    if(root->data < l) fun(root->right,l,h,count);
+    if(root->data > h) fun(root->left,l,h,count);
+    return;
+}
+int getCount(Node *root, int l, int h) {
+    int count=0;
+    fun(root,l,h,count);
+    return count;
+}

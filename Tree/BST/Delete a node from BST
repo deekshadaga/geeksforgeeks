@@ -1,0 +1,15 @@
+Node *deleteNode(Node *root,  int X)
+{
+    if(!root) return NULL;
+    if(X>root->data) root->right = deleteNode(root->right,X);
+    else if(X<root->data) root->left = deleteNode(root->left,X);
+    if(root->data==X){
+        Node *t1=root,*t2=root;
+        while(t1->right!=NULL) t1=t1->right;
+        if(t1==root) return NULL;
+        while(t2->right!=t1 && t2->right!=NULL) t2=t2->right;
+        root->data=t1->data;
+        t2->right=NULL;
+    }
+    return root;
+}

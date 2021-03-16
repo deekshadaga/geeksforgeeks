@@ -5,7 +5,7 @@ int fun(Node* root,int &diff){
     int r = fun(root->right,diff);
     int m = min(l,r);
     diff = max(diff,root->data-m);
-    cout << l << " " << r<< " "  << root->data << " " << diff << " " << endl;
+    //cout << l << " " << r<< " "  << root->data << " " << diff << " " << endl;
     return min(m,root->data);
 }
 int maxDiff(Node* root)

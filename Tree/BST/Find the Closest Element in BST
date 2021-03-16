@@ -1,0 +1,21 @@
+class Solution
+{
+    public:
+    void fun(Node* root,int K,int &diff){
+        if(root){
+            if(root->data==K){
+                diff=0;
+                return;
+            }
+            diff=min(diff,abs(root->data-K));
+            if(K<root->data) fun(root->left,K,diff);
+            else fun(root->right,K,diff);
+        }
+    }
+    int minDiff(Node *root, int K)
+    {
+        int diff=INT_MAX;
+        fun(root,K,diff);
+        return diff;
+    }
+};

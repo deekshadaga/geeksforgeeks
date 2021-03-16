@@ -1,0 +1,52 @@
+Recursive solution that gives TLE -->
+---------------------------------
+
+bool fun(Node* a,Node* b){
+    if(!a && !b) return true;
+    if(!a || !b) return false;
+    return (a->data==b->data) && fun(a->left,b->left) && fun(a->right,b->right); 
+}
+
+bool isSubTree(Node* T, Node* S) {
+    if(T) return fun(T,S) || isSubTree(T->left,S) || isSubTree(T->right,S);
+}
+
+Check 2 types of traversals (in + pre) or (in + post) -->
+-----------------------------------------------------
+
+void inorder(Node* root,vector<int> &a){
+    if(root==NULL) {
+        a.push_back(-1);
+        return;
+    }
+    inorder(root->left,a);
+    a.push_back(root->data);
+    inorder(root->right,a);
+}
+void preorder(Node* root,vector<int> &a){
+    if(root==NULL) {
+        a.push_back(-1);
+        return;
+    }
+    a.push_back(root->data);
+    preorder(root->left,a);
+    preorder(root->right,a);
+}
+bool check(vector<int> T,vector<int> S){
+    string strT="",strS="";
+    for(int i=0;i<T.size();i++) strT+=to_string(T[i]);
+    for(int i=0;i<S.size();i++) strS+=to_string(S[i]);
+    if(strT.find(strS)!=-1) return true;
+    //cout << strT << " " << strS << endl;
+    return false;
+}
+bool isSubTree(Node* T, Node* S) {
+    if(!T) return false;
+    if(!S) return true;
+    vector<int> inT,inS,preT,preS;
+    inorder(T,inT);
+    inorder(S,inS);
+    preorder(T,preT);
+    preorder(S,preS);
+    return (check(inT,inS) && check(preT,preS));
+}

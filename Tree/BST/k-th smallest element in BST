@@ -1,0 +1,20 @@
+class Solution{
+  public:
+    void fun(Node*root,int &ksmall,int &kthsmall){
+        if(!root) return;
+        fun(root->left,ksmall,kthsmall);
+        if(ksmall>0){
+            kthsmall=root->data;
+            ksmall--;
+        }
+        fun(root->right,ksmall,kthsmall);
+    }
+    // Return the Kth smallest element in the given BST 
+    int KthSmallestElement(Node *root, int K)
+    {
+        int ksmall=K,kthsmall=0;
+        fun(root,ksmall,kthsmall);
+        if(ksmall!=0) return -1;
+        return kthsmall;
+    }
+};

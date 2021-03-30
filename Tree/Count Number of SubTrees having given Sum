@@ -1,0 +1,14 @@
+int check(Node* root,int x,int &count){
+    if(!root) return 0;
+    int l=check(root->left,x,count);
+    int r=check(root->right,x,count);
+    if(l+r+root->data==x) count++;
+    return l+r+root->data;
+    
+}
+int countSubtreesWithSumX(Node* root, int X)
+{
+    int count=0;
+	check(root,X,count);
+	return count;
+}

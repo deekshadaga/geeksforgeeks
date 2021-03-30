@@ -1,0 +1,23 @@
+class Solution{
+  public:
+    // root : the root Node of the given BST
+    // target : the target sum
+    void inOrder(Node* root,vector<int> &v){
+        if(!root) return;
+        inOrder(root->left,v);
+        v.push_back(root->data);
+        inOrder(root->right,v);
+    }
+    int isPairPresent(struct Node *root, int target)
+    {
+        vector<int> v;
+        inOrder(root,v);
+        int i=0,j=v.size()-1;
+        while(i<j){
+            if(v[i]+v[j]==target) return 1;
+            if(v[i]+v[j]<target) i++;
+            else j--;
+        }
+        return 0;
+    }
+};

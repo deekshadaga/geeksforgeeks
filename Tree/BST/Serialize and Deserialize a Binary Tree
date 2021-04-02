@@ -1,0 +1,34 @@
+class Solution{
+
+public:   
+void fun(Node *root,vector<int> &A)
+{
+    if(root==NULL){
+        A.push_back(-1);
+        return;
+    }
+    A.push_back(root->data);
+    fun(root->left,A);
+    fun(root->right,A);
+}
+vector<int> serialize(Node *root) {
+    vector<int> A;
+    fun(root,A);
+    return A;
+}
+/*this function deserializes
+ the serialized vector A*/
+int pre=0;
+Node * deSerialize(vector<int> &A)
+{
+   if (pre == A.size() || A[pre] == -1) {
+        pre ++;
+        return NULL; 
+    } 
+    Node *root = new Node(A[pre]); 
+    pre++;
+    root->left = deSerialize(A); 
+    root->right = deSerialize(A); 
+    return root;
+}
+};

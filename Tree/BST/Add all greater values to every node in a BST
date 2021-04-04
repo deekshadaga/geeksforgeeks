@@ -1,0 +1,13 @@
+void fun(Node* root,int &sum){
+    if(!root) return;
+    fun(root->right,sum);
+    sum+=root->data;
+    root->data=sum;
+    fun(root->left,sum);
+}
+Node* modify(Node *root)
+{
+    int sum=0;
+    fun(root,sum);
+    return root;
+}

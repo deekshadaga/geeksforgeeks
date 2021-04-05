@@ -1,0 +1,23 @@
+int p;
+int search(int in[],int start,int end,int x){
+    int i;
+    for(i=start;i<=end;i++){
+        if(x==in[i]){
+            return i;
+        }
+    }
+}
+Node* construct(int in[],int post[],int start,int end){
+    if(start>end) return NULL;
+    Node* t=new Node(post[p--]);
+    if(start==end) return t;
+    int idx=search(in,start,end,t->data);
+    t->right=construct(in,post,idx+1,end);
+    t->left=construct(in,post,start,idx-1);
+    return t;
+}
+
+Node *buildTree(int in[], int post[], int n) {
+    p=n-1;
+    return construct(in,post,0,n-1);
+}

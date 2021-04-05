@@ -1,0 +1,15 @@
+int ans;
+int fun(Node* root){
+    if(!root) return INT_MIN;
+    int l=fun(root->left);
+    int r=fun(root->right);
+    if(root->left && root->right) ans=max(ans,l+r+root->data);
+    if(l==INT_MIN && r==INT_MIN) return root->data;
+    else return max(l,r)+root->data;
+}
+int maxPathSum(Node* root)
+{ 
+    ans=INT_MIN;
+    fun(root);
+    return ans;
+}

@@ -1,0 +1,29 @@
+class Solution{
+public:
+    bool SubsetSum(int N, int arr[], int sum){
+        bool d[N+1][sum+1];
+        for(int i=0;i<=N;i++){
+            for(int j=0;j<=sum;j++){
+                if(i==0) d[i][j]=false;
+                if(j==0) d[i][j]=true;
+            }
+        }
+        for(int i=1;i<=N;i++){
+            for(int j=1;j<=sum;j++){
+                if(arr[i-1]<sum){
+                    d[i][j]= d[i-1][j] || d[i-1][j-arr[i-1]];
+                }
+                else d[i][j] = d[i-1][j];
+            }
+        }
+        return d[N][sum];
+    }
+    int equalPartition(int N, int arr[])
+    {
+        long long sum=0;
+        for(int i=0;i<N;i++) sum+=arr[i];
+        if(sum%2==1) return 0;
+        if(SubsetSum(N,arr,sum/2)) return 1;
+        return 0;
+    }
+};

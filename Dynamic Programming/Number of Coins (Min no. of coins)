@@ -47,3 +47,4 @@ USING 1D ARRAY -->
 		  if(table[V]==INT_MAX)
 		    return -1;
 		return table[V];
+	}

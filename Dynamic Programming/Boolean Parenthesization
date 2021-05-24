@@ -1,0 +1,163 @@
+USING RECURSION -->
+---------------
+
+class Solution{
+public:
+    int solve(string s,int i,int j,bool isTrue){
+        if(i>j) return false;
+        if(i==j){
+            if(isTrue==true)
+                return s[i]=='T';
+            else 
+                return s[i]=='F';
+        }
+        int ans=0;
+        for(int k=i+1;k<=j-1;k=k+2){
+            int lt=solve(s,i,k-1,true);
+            int lf=solve(s,i,k-1,false);
+            int rt=solve(s,k+1,j,true);
+            int rf=solve(s,k+1,j,false);
+            if(s[k]=='&'){
+                if(isTrue==true)
+                    ans=ans+(lt*rt);
+                else
+                    ans=ans+(lf*rf)+(lt*rf)+(lf*rt);
+            }
+            else if(s[k]=='|'){
+                if(isTrue==true)
+                    ans=ans+(lt*rt)+(lt*rf)+(lf*rt);
+                else
+                    ans=ans+(lf*rf);
+            }
+            else if(s[k]=='^'){
+                if(isTrue==true)
+                    ans=ans+(lt*rf)+(lf*rt);
+                else
+                    ans=ans+(lf*rf)+(lt*rt);
+            }
+        }
+        return ans;
+    }
+    int countWays(int N, string S){
+        return solve(S,0,N-1,true);
+    }
+};
+
+
+
+USING MAP -->
+---------
+
+unordered_map<string,int> mp;
+
+class Solution{
+public:
+    int solve(string s,int i,int j,bool isTrue){
+        if(i>j) return false;
+        if(i==j){
+            if(isTrue==true)
+                return s[i]=='T';
+            else 
+                return s[i]=='F';
+        }
+        string temp= to_string(i)+" "+to_string(j)+" "+to_string(isTrue);
+        if(mp.find(temp)!=mp.end()) 
+            return mp[temp];
+        int ans=0;
+        for(int k=i+1;k<=j-1;k=k+2){
+            int lt=solve(s,i,k-1,true);
+            int lf=solve(s,i,k-1,false);
+            int rt=solve(s,k+1,j,true);
+            int rf=solve(s,k+1,j,false);
+            if(s[k]=='&'){
+                if(isTrue==true)
+                    ans=ans+(lt*rt);
+                else
+                    ans=ans+(lf*rf)+(lt*rf)+(lf*rt);
+            }
+            else if(s[k]=='|'){
+                if(isTrue==true)
+                    ans=ans+(lt*rt)+(lt*rf)+(lf*rt);
+                else
+                    ans=ans+(lf*rf);
+            }
+            else if(s[k]=='^'){
+                if(isTrue==true)
+                    ans=ans+(lt*rf)+(lf*rt);
+                else
+                    ans=ans+(lf*rf)+(lt*rt);
+            }
+        }
+        return mp[temp]=ans;
+    }
+    int countWays(int N, string S){
+        return solve(S,0,N-1,true);
+    }
+};
+
+USING TOP DOWN -->
+--------------
+
+
+int t[201][201][2];
+
+class Solution{
+public:
+    int solve(string s,int i,int j,int isTrue){
+        if(i>j) return t[i][j][isTrue]=0;
+        if(i==j){
+            if(isTrue==1)
+                return t[i][j][isTrue]=(s[i]=='T')?1:0;
+            else 
+                return t[i][j][isTrue]=(s[i]=='F')?1:0;
+        }
+        if(t[i][j][isTrue]!=-1) 
+            return t[i][j][isTrue];
+        int ans=0;
+        for(int k=i+1;k<=j-1;k=k+2){
+            int lt=t[i][k-1][1];
+            int lf=t[i][k-1][0];
+            int rt=t[k+1][j][1];
+            int rf=t[k+1][j][0];
+            if(lt==-1){
+                lt=solve(s,i,k-1,true);;
+                t[i][k-1][1]=lt;
+            }
+            if(lf==-1){
+                lf=solve(s,i,k-1,false);;
+                t[i][k-1][0]=lf;
+            }
+            if(rt==-1){
+                rt=solve(s,k+1,j,true);;
+                t[k+1][j][1]=rt;
+            }
+            if(rf==-1){
+                rf=solve(s,k+1,j,false);;
+                t[k+1][j][0]=rf;
+            }
+            if(s[k]=='&'){
+                if(isTrue==true)
+                    ans=ans+(lt*rt);
+                else
+                    ans=ans+(lf*rf)+(lt*rf)+(lf*rt);
+            }
+            else if(s[k]=='|'){
+                if(isTrue==true)
+                    ans=ans+(lt*rt)+(lt*rf)+(lf*rt);
+                else
+                    ans=ans+(lf*rf);
+            }
+            else if(s[k]=='^'){
+                if(isTrue==true)
+                    ans=ans+(lt*rf)+(lf*rt);
+                else
+                    ans=ans+(lf*rf)+(lt*rt);
+            }
+        }
+        return t[i][j][isTrue]=ans%1003;
+    }
+    int countWays(int N, string S){
+        memset(t,-1,sizeof(t));
+        return solve(S,0,N-1,1)%1003;
+    }
+};

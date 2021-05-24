@@ -1,0 +1,30 @@
+//https://www.interviewbit.com/problems/scramble-string/
+
+//Running in test cases but on submission giving wrong answer
+
+unordered_map<string,bool> mp;
+
+bool solve(string a,string b){
+    if(a.compare(b)==0) return true;
+    if(a.length()<=1) return false;
+    string key=a+" "+b;
+    if(mp.find(key)!=mp.end()) return mp[key];
+    int n=a.length();
+    bool flag=false;
+    for(int i=1;i<=n-1;i++){
+        bool swap=(solve(a.substr(0,i),b.substr(n-i,i)) && solve(a.substr(i,n-i),b.substr(0,n-i)));
+        bool noswap=(solve(a.substr(0,i),b.substr(0,i)) && solve(a.substr(n-i,i),b.substr(n-i,i)));
+        if(swap || noswap){
+            flag=true;
+            break;
+        }
+    }
+    return mp[key]=flag;
+}
+
+int Solution::isScramble(const string A, const string B) {
+    if(A.length()!=B.length()) return 0;
+    if(A.length()==0) return 1;
+    if(solve(A,B)) return 1;
+    return 0;
+}

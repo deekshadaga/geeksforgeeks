@@ -1,0 +1,32 @@
+OPTIMIZED MEMOIZATION - 
+
+int static t[101][101];
+class Solution{
+public:
+    int mcm(int arr[],int i,int j){
+        if(i>=j) return 0;
+        if(t[i][j]!=-1) return t[i][j];
+        int ans=INT_MAX;
+        for(int k=i;k<j;k++){
+            int l,r;
+            if(t[i][k]!=-1) l=t[i][k];
+            else{
+                l=mcm(arr,i,k);
+                t[i][k]=l;
+            }
+            if(t[k+1][j]!=-1) r=t[k+1][j];
+            else{
+                r=mcm(arr,k+1,j);
+                t[k+1][j]=r;
+            }
+            int temp=(arr[i-1]*arr[k]*arr[j])+l+r;
+            ans=min(temp,ans);
+        }
+        return ans;
+    }
+    int matrixMultiplication(int N, int arr[])
+    {
+        memset(t,-1,sizeof(t));
+        return mcm(arr,1,N-1);
+    }
+};

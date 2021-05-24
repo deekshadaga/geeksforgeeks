@@ -1,0 +1,48 @@
+OPTIMIZED MEMOIZATION -
+
+int static t[501][501];
+
+class Solution{
+public:
+
+    bool isPalindrome(string s, int i,int j)
+    {
+        while(i<j){
+            if(s[i]!=s[j]) 
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    
+    int solve(string s,int i,int j){
+        if(i>j) return 0;
+        if(t[i][j]!=-1) return t[i][j];
+        if(isPalindrome(s,i,j) || i==j){
+            t[i][j]=0;
+            return 0;
+        }
+        int ans=INT_MAX;
+        for(int k=i;k<j;k++){
+            int right=0;
+            if(isPalindrome(s,i,k))
+                right=solve(s,k+1,j);
+            else
+            {
+                t[i][k]=0;
+                continue;
+            }
+            int count = 1 + right;
+            if (count < ans) 
+            ans = count;
+        }
+        return t[i][j]=ans;
+    }
+    
+    int palindromicPartition(string str)
+    {
+        memset(t,-1,sizeof(t));
+        return solve(str,0,str.length()-1);   
+    }
+};

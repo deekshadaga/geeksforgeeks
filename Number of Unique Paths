@@ -1,0 +1,23 @@
+
+
+class Solution
+{
+    public:
+    //Function to find total number of unique paths.
+    int nCk(int n, int k){
+        int res = 1;
+        
+        for(int i = 0; i < k; ++i)
+        {
+        res *= (n - i);
+        res /= (i + 1);
+        }
+        return res;
+    }
+    int NumberOfPath(int a, int b)
+    {
+        a--;
+        b--;
+        return nCk(a+b,min(a,b));
+    }
+};

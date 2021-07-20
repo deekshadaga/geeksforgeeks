@@ -1,0 +1,21 @@
+bool cmp(struct val x,struct val y){
+    return(y.second>x.second);
+}
+int maxChainLen(struct val p[],int n)
+{
+    sort(p,p+n,cmp);
+    int dp[n];
+    for(int i=0;i<n;i++) dp[i]=1;
+    for(int i=1;i<n;i++){
+        for(int j=0;j<i;j++){
+            if(p[i].first>p[j].second){
+                if(dp[i]<dp[j]+1) dp[i]=dp[j]+1;
+            }    
+        }
+    }
+    int s=0;
+    for(int i=0;i<n;i++){
+        if(dp[i]>s) s=dp[i]; 
+    }
+    return s;
+}

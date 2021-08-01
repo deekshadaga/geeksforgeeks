@@ -1,0 +1,18 @@
+void path(Node* root,int sum,int &res){
+
+    if(!root) return;
+    sum+=root->data;
+    if(!root->left && !root->right) {
+        res=max(res,sum);
+        return;
+    }
+    path(root->left,sum,res);
+    path(root->right,sum,res);
+}
+int maxPathSum(Node* root)
+{
+    int res=INT_MIN;
+    int sum=0;
+    path(root,sum,res);
+    return res;
+}

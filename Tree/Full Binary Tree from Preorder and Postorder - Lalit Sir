@@ -1,0 +1,17 @@
+struct Node{
+    int key;
+    Node *left,*right;
+}
+struct NewNode{
+   Node* node= new Node();
+   
+}
+Node *construct(){
+
+}
+Node *ConstructBinaryTree(vector<int>){
+
+}
+int main(){
+  vector<int>
+}

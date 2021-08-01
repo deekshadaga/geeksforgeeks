@@ -35,12 +35,13 @@ int maxPathSum(Node* root)
 
 
 if path is to be printed -->
-//incomplete 
+
 bool PrintPath(Node* root , sum)
 {
     if(sum==0) return true;
     if(!root) return false;
     bool l=PrintPath(root->left,sum-root->data);
     bool r=PrintPath(root->right,sum-root->data);
-   
+    if(l || r) cout<<root->key<<" ";
+    return l||r;
 }

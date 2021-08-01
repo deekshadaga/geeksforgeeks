@@ -1,0 +1,45 @@
+void path(Node* root,vector<int> p,vector<vector<int>> &v){
+    if(!root) return;
+    p.push_back(root->data);
+    if(root->left){
+        path(root->left,p,v);
+    }
+    if(root->right){
+        path(root->right,p,v);
+    }
+    if(!root->left && !root->right) {
+        v.push_back(p);
+        return;
+    }
+}
+vector<vector<int>> Paths(Node* root)
+{
+    vector <vector<int>> v;
+    vector<int> p;
+    if(!root) return v;
+    path(root,p,v);
+    return v;
+}
+
+OR
+
+void path(Node* root,vector<int> p,vector<vector<int>> &v){
+    
+    if(!root) return;
+    p.push_back(root->data);
+
+    if(!root->left && !root->right) {
+        v.push_back(p);
+        return;
+    }
+    
+    path(root->left,p,v);
+    path(root->right,p,v);
+}
+vector<vector<int>> Paths(Node* root)
+{
+    vector <vector<int>> v;
+    vector<int> p;
+    path(root,p,v);
+    return v;
+}

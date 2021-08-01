@@ -1,0 +1,38 @@
+struct NodeInfo{
+    int key;
+    int level;
+    Node* parent;
+};
+
+void Inorder(Node *root,Node* parent,int level,NodeInfo &x,NodeInfo &y)
+{
+    if(!root) return;
+    
+    Inorder(root->left,root,level+1,x,y);
+    
+    if(root->data==x.key){
+        x.level=level;
+        x.parent=parent;
+    }
+    if(root->data==y.key){
+        y.level=level;
+        y.parent=parent;
+    }
+    
+    Inorder(root->right,root,level+1,x,y);
+}
+bool isCousins(Node *root, int a, int b)
+{
+    if(!root) return false;
+    
+    int level=1;
+    Node* parent=NULL;
+    
+    NodeInfo n1={a,level,parent};
+    NodeInfo n2={b,level,parent};
+    
+    Inorder(root,NULL,1,n1,n2);
+    
+    if(n1.level==n2.level && n1.parent!=n2.parent) return true;
+    return false;
+}

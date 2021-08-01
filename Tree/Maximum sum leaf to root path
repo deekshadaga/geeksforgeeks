@@ -16,3 +16,19 @@ int maxPathSum(Node* root)
     path(root,sum,res);
     return res;
 }
+
+
+OR
+
+int RtoLSum(Node* root){
+
+    if(!root) return 0;
+    int l=RtoLSum(root->left);
+    int r=RtoLSum(root->right);
+    return (l>r?l:r)+root->data;
+}
+int maxPathSum(Node* root)
+{
+    int sum=RtoLSum(root);
+    return sum;
+}

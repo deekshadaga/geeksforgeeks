@@ -21,3 +21,6 @@ Node *buildTree(int in[], int post[], int n) {
     p=n-1;
     return construct(in,post,0,n-1);
 }
+
+
+//If we don't want search function we can use unordered map to store data and index pair and use that.

@@ -1,0 +1,14 @@
+class Solution
+{
+public:
+    int singleDigit(long long N)
+    {
+        long long sum=0;
+        while(N){
+            sum+=N%10;
+            N/=10;
+        }
+        if(sum/10==0) return sum;
+        return singleDigit(sum);
+    }
+};

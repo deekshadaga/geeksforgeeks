@@ -1,0 +1,78 @@
+USING BFS -->
+
+bool checkForCycle(int start,int V,vector<int> adj[],vector<int> &visited)
+  {
+      queue<pair<int,int>> q;
+      visited[start]=1;
+      q.push({start,-1}); //storing starting node and parent as prev node
+      while(!q.empty())
+      {
+          int node=q.front().first;
+          int prev=q.front().second;
+          q.pop();
+          
+          for(auto i:adj[node]) //visiting adjacent nodes
+          {
+              if(!visited[i])
+              {
+                  visited[i]=true;
+                  q.push({i,node});
+                  
+              }
+              else if(i!=prev)
+               return true;
+          }
+      }
+      return false;
+      
+  }
+   
+    bool isCycle(int V, vector<int> adj[]) {
+        vector<int> vis(V,0);
+        for(int i=0;i<V;i++)
+       {
+           if(!vis[i])
+           {
+               if(checkForCycle(i,V,adj,vis))
+                return true;
+           }
+       }
+       return false;
+    }
+
+
+
+USING DFS -->
+
+
+bool checkForCycle(int node,int parent,vector<int> &vis,vector<int> adj[])
+    {
+        vis[node]=1;
+        for(auto i:adj[node])
+        {
+            if(vis[i]==0)
+             {
+                 if(checkForCycle(i,node,vis,adj))
+                       return true;
+             }
+                 else if(i!=parent)
+                  return true;
+                 
+             
+        }
+        return false;
+    }
+    public:
+     bool isCycle(int V,vector<int> adj[])
+     {
+         vector<int> vis(V+1,0);
+         for(int i=1;i<V;i++)
+         {
+             if(!vis[i])
+              { 
+                  if(checkForCycle(i,-1,vis,adj))
+                return true;
+              }
+         }
+         return false;
+     }

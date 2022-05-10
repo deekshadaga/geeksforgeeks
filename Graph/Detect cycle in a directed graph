@@ -1,3 +1,39 @@
+BFS --> Using Kahn's algo for topological sort 
+
+class Solution
+{
+	public:
+	//Function to return list containing vertices in Topological order.
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    vector<int> indegree(V,0);
+	    queue<int> q;
+	    for(int i=0;i<V;i++){
+	        for(auto it: adj[i]){
+	            indegree[it]++;
+	        }
+	    }
+	    for(int i=0;i<V;i++){
+	        if(indegree[i]==0){
+	            q.push(i);
+	        }
+	    }
+	    vector<int> ans;
+	    while(!q.empty()){
+	        int node=q.front();
+	        q.pop();
+	        ans.push_back(node);
+	        for(auto itr: adj[node]){
+	            indegree[itr]--;
+	            if(indegree[itr]==0) q.push(itr);
+	        }
+	    }
+	    return ans;
+	}
+};
+
+DFS -->
+
 bool checkcycle(int node, vector<int> adj[], int vis[],int dfsvis[]){
        vis[node]=1;
        dfsvis[node]=1;

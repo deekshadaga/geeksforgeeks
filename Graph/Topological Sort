@@ -38,28 +38,29 @@ class Solution
 {
 	public:
 	//Function to return list containing vertices in Topological order.
-	void topological(int node,vector<int> adj[],vector<int> &vis,stack<int> & st){
-	    vis[node]=1;
-	    for(auto itr:adj[node]){
-	        if(!vis[itr]){
-	            topological(itr,adj,vis,st);
-	        }
-	    }
-	    st.push(node);
-	}
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
-	    vector<int> vis(V+1,0);
-	    stack<int> st;
+	    vector<int> indegree(V,0);
+	    queue<int> q;
 	    for(int i=0;i<V;i++){
-	        if(!vis[i]){
-	            topological(i,adj,vis,st);
+	        for(auto it: adj[i]){
+	            indegree[it]++;
+	        }
+	    }
+	    for(int i=0;i<V;i++){
+	        if(indegree[i]==0){
+	            q.push(i);
 	        }
 	    }
 	    vector<int> ans;
-	    while(!st.empty()){
-	        ans.push_back(st.top());
-	        st.pop();
+	    while(!q.empty()){
+	        int node=q.front();
+	        q.pop();
+	        ans.push_back(node);
+	        for(auto itr: adj[node]){
+	            indegree[itr]--;
+	            if(indegree[itr]==0) q.push(itr);
+	        }
 	    }
 	    return ans;
 	}

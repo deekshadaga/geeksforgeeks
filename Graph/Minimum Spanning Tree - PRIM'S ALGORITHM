@@ -1,0 +1,97 @@
+1) PRIM'S ALGORITHM -->
+
+
+BRUTE :
+
+class Solution
+{
+	public:
+	//Function to find sum of weights of edges of the Minimum Spanning Tree.
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        int sum=0;
+        int key[V];
+        int parent[V];
+        bool mst[V];
+        for(int i=0;i<V;i++){
+            key[i]=INT_MAX;
+            mst[i]=false;
+        }
+        key[0] = 0;
+        parent[0] = -1;
+        for(int i=0;i<V;i++){
+            int mini = INT_MAX,u;
+            for(int j=0;j<V;j++){
+                if(key[j]<mini && mst[j]==false){
+                    mini = key[j];
+                    u=j;
+                }
+            }
+            mst[u]=true;
+            for(auto it: adj[u]){
+                int node = it[0];
+                int weight = it[1];
+                //cout<<node<<" "<<weight<<endl;
+                if(key[node]>weight && mst[node]==false){
+                    key[node] = weight;
+                    //cout<<key[node]<<endl;
+                    parent[node] = node;
+                }
+            }
+        }
+        for(int i=0;i<V;i++){
+            sum+=key[i];
+            //cout<<key[i]<<" ";
+        }
+        return sum;
+    }
+};
+
+
+Efficient :
+
+// is not working for all test cases so idk
+
+class Solution
+{
+	public:
+	//Function to find sum of weights of edges of the Minimum Spanning Tree.
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        int sum=0;
+        int key[V];
+        int parent[V];
+        bool mst[V];
+        for(int i=0;i<V;i++){
+            key[i]=INT_MAX;
+            mst[i]=false;
+        }
+        key[0]=0;
+        parent[0]=-1;
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+        pq.push({0,0});
+        for(int i=0;i<V;i++){
+            int u = pq.top().second;
+            pq.pop();
+            mst[u]=true;
+            for(auto it: adj[u]){
+                int node = it[0];
+                int weight = it[1];
+                //cout<<node<<" "<<weight<<endl;
+                if(key[node]>weight && mst[node]==false){
+                    key[node] = weight;
+                    parent[node] = node;
+                    pq.push({key[node],node});
+                }
+            }
+        }
+        for(int i=0;i<V;i++){
+            sum+=key[i];
+            //cout<<key[i]<<" ";
+        }
+        return sum;
+    }
+};
+
+
+

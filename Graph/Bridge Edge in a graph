@@ -1,19 +1,41 @@
-ool dfs(int node,int parent, vector<int>& vis, vector<int>& tin, vector<int>& low, int timer, vector<int> adj[],int c,int d){
-       vis[node]=1;
-       tin[node] = low[node] = timer++;
-       for(auto it: adj[node]){
-           if(it == parent)continue;
-           if(!vis[it]){
-               if(dfs(it,node,vis,tin,low,timer,adj,c,d))return 1;
-               low[node] = min(low[node],low[it]);
-               if(low[it] > tin[node] and (it==c && node==d or it==d && node==c)){
-                       return 1;
-                   
-               }}
-               else{
-                   low[node] = min(low[node],tin[it]);
-               }
-           
-       }
+class Solution
+{
+	public:
+    //Function to find if the given edge is a bridge in graph.
+    bool dfs(int node,int parent, vector<int>& vis, vector<int>& tin, vector<int>& low, int timer, vector<int> adj[],int c,int d){
+        vis[node]=1;
+        tin[node] = low[node] = timer++;
+        for(auto it: adj[node]){
+            if(it == parent)
+                continue;
+            if(!vis[it]){
+                if(dfs(it,node,vis,tin,low,timer,adj,c,d))
+                    return 1;
+                low[node] = min(low[node],low[it]);
+                if(low[it] > tin[node] && ((it==c && node==d) || (it==d && node==c))){
+                        return 1;
+                }
+            }
+            else{
+                low[node] = min(low[node],tin[it]);
+            }
+        }
+        return 0;
+    }
+    
+    
+    int isBridge(int V, vector<int> adj[], int c, int d) 
+    {
+        vector<int> tin(V,-1);
+       vector<int> low(V,-1);
+       vector<int> vis(V,0);
+       for(int i=0;i<V;i++){
+           if(!vis[i]){
+              if(dfs(i,-1,vis,tin,low,0,adj,c,d)){
+                  
+                  return 1;}
+            }
+        }
        return 0;
-   }
+    }
+};

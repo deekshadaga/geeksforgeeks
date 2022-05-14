@@ -1,0 +1,19 @@
+ool dfs(int node,int parent, vector<int>& vis, vector<int>& tin, vector<int>& low, int timer, vector<int> adj[],int c,int d){
+       vis[node]=1;
+       tin[node] = low[node] = timer++;
+       for(auto it: adj[node]){
+           if(it == parent)continue;
+           if(!vis[it]){
+               if(dfs(it,node,vis,tin,low,timer,adj,c,d))return 1;
+               low[node] = min(low[node],low[it]);
+               if(low[it] > tin[node] and (it==c && node==d or it==d && node==c)){
+                       return 1;
+                   
+               }}
+               else{
+                   low[node] = min(low[node],tin[it]);
+               }
+           
+       }
+       return 0;
+   }

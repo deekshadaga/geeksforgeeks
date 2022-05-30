@@ -1,0 +1,23 @@
+class Solution
+{
+    public:
+    //Function to find whether a path exists from the source to destination.
+    bool solve(vector<vector<int>>& grid,int i,int j){
+        if(i<0 || j<0 || i==grid.size() || j==grid[0].size() || grid[i][j]==0)  return false;
+        if(grid[i][j]==2)  return true;
+        
+        grid[i][j]=0;
+        return (solve(grid,i+1,j) || solve(grid,i-1,j) || solve(grid,i,j+1) || solve(grid,i,j-1) );
+    }
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        int i,j;
+        for(i=0;i<grid.size();i++){
+            for(j=0;j<grid[0].size();j++){
+                if(grid[i][j]==1){
+                    return solve(grid,i,j);
+                }
+            }
+        }
+    }
+};

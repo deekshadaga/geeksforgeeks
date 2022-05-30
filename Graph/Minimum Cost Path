@@ -1,0 +1,53 @@
+struct node{
+   int dist,i,j;
+};
+struct cmp{
+   bool operator()(const node &a,const node &b)
+   {
+       return a.dist>b.dist;
+   }
+};
+class Solution
+{
+   public:
+int dx[4]={-1,0,1,0},dy[4]={0,1,0,-1};
+void insert(node &a,int val,int i,int j)
+{
+    a.dist=val;
+    a.i=i;
+    a.j=j;
+   }
+   bool valid(int i,int j,int n)
+   {
+       if(i<0 || j<0 || i==n || j==n)
+       return false;
+       return true;
+   }
+    int minimumCostPath(vector<vector<int>>& grid) 
+    {
+        int n=grid.size();
+       vector<vector<int>>dp(n,vector<int>(n,1e8));
+       priority_queue<node,vector<node>,cmp>pq;
+       node a;
+       insert(a,grid[0][0],0,0);
+       pq.push(a);
+       dp[0][0]=grid[0][0];
+       while(pq.size())
+       {
+           int w=pq.top().dist,i=pq.top().i,j=pq.top().j;
+           pq.pop();
+           for(int k=0;k<4;k+=1)
+           {
+               int x=i+dx[k],y=j+dy[k];
+               if(valid(x,y,n) && dp[x][y]>w+grid[x][y])
+               {
+                   node temp;
+                   dp[x][y]=w+grid[x][y];
+                   insert(temp,dp[x][y],x,y);
+                   pq.push(temp);
+               }
+           }
+       }
+       return dp[n-1][n-1];
+   }
+};

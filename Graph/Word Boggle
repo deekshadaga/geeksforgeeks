@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<pair<int,int>> p={{0,1},{1,0},{0,-1},{-1,0},{-1,-1},{1,1},{-1,1},{1,-1}};
+   bool func(vector<vector<char>> &v,int i,int j,string &g,int k){
+       if(k==g.size()) return true;
+       if(i<0 or j<0 or i==v.size() or j==v[0].size() or v[i][j]!=g[k]) return false;
+       char ch=v[i][j];
+       v[i][j]='.';
+       for(auto l:p) if(func(v,i+l.first,j+l.second,g,k+1)){
+           v[i][j]=ch;
+           return true;
+       }
+       v[i][j]=ch;
+       return false;
+   }
+   bool isWordExist(vector<vector<char>>& v, string &g) {
+       int m=v.size(),n=v[0].size();
+       for(int i=0;i<m;i++){
+           for(int j=0;j<n;j++) if(func(v,i,j,g,0)) return true;
+       }
+       return false;
+   }
+    vector<string> wordBoggle(vector<vector<char> >& board, vector<string>& dic) {
+        // Code here
+        vector<string> ans;
+        for(auto i: dic) if(isWordExist(board,i)) ans.push_back(i);
+        return ans;
+    }
+};

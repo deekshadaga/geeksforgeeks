@@ -1,5 +1,29 @@
 int intersectPoint(Node* head1, Node* head2)
 {
+    Node* l1=head1,*l2=head2;
+    if(l1==l2) return head1->data;
+    while(l1 && l2){
+        if(l1==l2) return l1->data;
+        if(l1->next==NULL) {
+            l1=head2;
+            l2=l2->next;
+        }
+        else if(l2->next==NULL) {
+            l2=head1;
+            l1=l1->next;
+        }
+        else{
+            l1=l1->next;
+            l2=l2->next;
+        }
+    }
+    return -1;
+}
+
+
+
+int intersectPoint(Node* head1, Node* head2)
+{
     Node* l1=head1;
     Node* l2=head2;
     int c1=0,c2=0;

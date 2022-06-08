@@ -1,0 +1,45 @@
+int* res = new int[2];
+       int ind = 0;
+       for(int i = 0; i<n; i++){
+           ind = (arr[i])%n;
+           if(arr[ind] > n){
+               res[0] = arr[i]%n == 0? n : arr[i]%n;
+           }
+           else arr[ind] += n;
+       }
+       
+       for(int i = 0; i<n; i++){
+           if(arr[i] <= n)
+               res[1] = i==0? n : i;
+       }
+             
+       return res;
+       
+       
+       int *findTwoElement(int *arr, int n) {
+        sort(arr,arr+n);
+       int *p = new int[2];
+       int i,k=n-1;
+       for(i=0;i<n-1;i++)
+       {
+           if(arr[i]==arr[i+1])
+           {
+               p[0] = arr[i];
+               arr[i] = 0;
+               break;
+           }
+       }
+       for(i=n-1;i>=0;i--)
+       {
+           if(arr[i]==k)
+           {
+               k--;
+           }
+       }
+       if(k==-1 || k==0)
+       {
+           k = n;
+       }
+       p[1] = k;
+       return p;
+    }

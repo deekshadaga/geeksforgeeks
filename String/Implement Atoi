@@ -1,0 +1,15 @@
+int atoi(string str) {
+        int ans=0,flag=1,i=0;
+        if(str[0]=='-'){
+            flag = -1;
+            i+=1;
+        }
+        for(;i<str.length();i++){
+            if(str[i]>='0' && str[i]<='9'){
+                ans*=10;
+                ans+=str[i]-'0';
+            }
+            else return -1;
+        }
+        return flag*ans;
+    }

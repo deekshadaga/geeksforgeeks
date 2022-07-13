@@ -1,0 +1,54 @@
+int subtractOneUtil(Node* head)
+{
+ 
+    // Base Case
+    if (head == NULL)
+        return -1;
+ 
+    // Recursively call for the next
+    // node of the head
+    int borrow = subtractOneUtil(
+        head->next);
+ 
+    // If there is a borrow
+    if (borrow == -1) {
+ 
+        // If the head data is 0, then
+        // update it with 9 and return -1
+        if (head->data == 0) {
+            head->data = 9;
+            return -1;
+        }
+ 
+        // Otherwise, decrement head's
+        // data by 1 and return 0
+        else {
+            head->data = head->data - 1;
+            return 0;
+        }
+    }
+ 
+    // Otherwise, return 0
+    else {
+        return 0;
+    }
+}
+ 
+// Function to subtract 1 from the given
+// Linked List representation of number
+Node* subtractOne(Node* head)
+{
+ 
+    // Recursively subtract 1 from
+    // the Linked List
+    subtractOneUtil(head);
+ 
+    // Increment the head pointer
+    // if there are any leading zeros
+    while (head and head->next
+           and head->data == 0) {
+        head = head->next;
+    }
+ 
+    return head;
+}

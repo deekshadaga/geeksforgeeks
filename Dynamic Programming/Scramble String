@@ -1,7 +1,5 @@
 //https://www.interviewbit.com/problems/scramble-string/
 
-//Running in test cases but on submission giving wrong answer
-
 unordered_map<string,bool> mp;
 
 bool solve(string a,string b){
@@ -12,12 +10,18 @@ bool solve(string a,string b){
     int n=a.length();
     bool flag=false;
     for(int i=1;i<=n-1;i++){
-        bool swap=(solve(a.substr(0,i),b.substr(n-i,i)) && solve(a.substr(i,n-i),b.substr(0,n-i)));
-        bool noswap=(solve(a.substr(0,i),b.substr(0,i)) && solve(a.substr(n-i,i),b.substr(n-i,i)));
-        if(swap || noswap){
+        bool l = (mp.find(a.substr(0,i)+" "+b.substr(n-i,i))!=mp.end())? mp[a.substr(0,i)+" "+b.substr(n-i,i)]:solve(a.substr(0,i),b.substr(n-i,i));
+        bool r = (mp.find(a.substr(i,n-i)+" "+b.substr(0,n-i))!=mp.end())? mp[a.substr(i,n-i)+" "+b.substr(0,n-i)]:solve(a.substr(i,n-1),b.substr(0,n-i));
+        if( l && r){
             flag=true;
             break;
-        }
+        };
+        l = (mp.find(a.substr(0,i)+" "+b.substr(0,i))!=mp.end())? mp[a.substr(0,i)+" "+b.substr(0,i)]:solve(a.substr(0,i),b.substr(0,i));
+        r = (mp.find(a.substr(i,n-i)+" "+b.substr(i,n-i))!=mp.end())? mp[a.substr(i,n-i)+" "+b.substr(i,n-i)]:solve(a.substr(i,n-1),b.substr(i,n-i));
+        if( l && r){
+            flag=true;
+            break;
+        };
     }
     return mp[key]=flag;
 }
@@ -28,3 +32,4 @@ int Solution::isScramble(const string A, const string B) {
     if(solve(A,B)) return 1;
     return 0;
 }
+

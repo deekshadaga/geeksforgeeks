@@ -1,0 +1,19 @@
+class Solution
+{
+    public:
+    //Function to find the maximum money the thief can get.
+    int FindMaxSum(int arr[], int n)
+    {
+        int curr, prev=arr[0],prev2=0;
+        if(n==1) return prev;
+        for(int i=1;i<n;i++){
+            int pick = arr[i];
+            if(i>1) pick+=prev2;
+            int notPick = prev;
+            curr= max(pick,notPick);
+            prev2 = prev;
+            prev= curr;
+        }
+        return prev;
+    }
+};

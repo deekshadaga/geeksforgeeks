@@ -1,0 +1,21 @@
+bool solve(Node* root, int &count, int node, int &val){
+    if(!root) return false;
+    if(root->data == node) return true;
+    int l = solve(root->left,count, node, val); 
+    int r = solve(root->right,count, node, val); 
+    if(l||r){
+        count--;
+        if(count == 0 ) val = root->data;
+        return true;
+    }
+    return false;
+}
+int kthAncestor(Node *root, int k, int node)
+{
+    int val = -1, count =k;
+    
+    solve(root , count, node , val);
+    
+    return val;
+    
+}

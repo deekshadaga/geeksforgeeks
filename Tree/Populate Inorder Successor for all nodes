@@ -1,0 +1,14 @@
+class Solution {
+  public:
+    void populateNextNode(Node *root, Node* &prev){
+        if(!root) return;
+        populateNextNode(root->left,prev);
+        if(prev) prev->next = root;
+        prev = root;
+        populateNextNode(root->right,prev);
+    }
+    void populateNext(Node *root) {
+        Node* prev=NULL;
+        populateNextNode(root,prev);
+    }
+};

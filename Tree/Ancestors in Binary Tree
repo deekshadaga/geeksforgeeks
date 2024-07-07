@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    bool getAncestors(struct Node *root, int target,vector<int> &ancestorsList) {
+        if(!root) return false;
+        if(root->data == target) return true;
+        bool isAncestor = getAncestors(root->left,target,ancestorsList);
+        if(!isAncestor){
+            isAncestor = getAncestors(root->right,target,ancestorsList);
+        }
+        if(isAncestor){
+            ancestorsList.push_back(root->data);
+        }
+        return isAncestor;
+    }
+    
+    // Function should return all the ancestor of the target node
+    vector<int> Ancestors(struct Node *root, int target) {
+        vector<int> ancestorsList;
+        getAncestors(root, target,ancestorsList);
+        return ancestorsList;
+    }
+};

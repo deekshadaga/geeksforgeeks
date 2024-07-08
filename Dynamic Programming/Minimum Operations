@@ -1,0 +1,19 @@
+class Solution
+{
+  public:
+    int minOperation(int n)
+    {
+        int cnt=0,i=n;
+        while(i){
+            if(i%2==0){
+                i/=2;
+                cnt++;
+            }
+            else{
+                i-=1;
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+};

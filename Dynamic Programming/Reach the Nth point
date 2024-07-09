@@ -1,0 +1,15 @@
+class Solution{
+	public:
+		int nthPoint(int n){
+		    int count=0,prev1=0,prev=1;
+		    int i=n;
+		    while(i){
+		        int cur = (prev+prev1) % 1000000007;
+		        prev1=prev;
+		        prev=cur;
+		        i--;
+		    }
+		return prev;
+		}
+		
+};

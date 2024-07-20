@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    Node* helper(Node* root){
+        if(!root) return NULL;
+        root->left = helper(root->left);
+        root->right = helper(root->right);
+        if(!root->left && root->right)
+            return root->right;
+        if(root->left && !root->right)
+            return root->left;
+        return root;
+    }
+    Node *RemoveHalfNodes(Node *root) {
+        return helper(root);
+    }
+};

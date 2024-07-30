@@ -1,3 +1,37 @@
+class Solution {
+  public:
+    void pathHelper(vector<vector<int>> &mat,vector<string> &ans,int r,int c,int n,int m,string temp){
+        if(r<0 || c<0 || r>=n || c>=m || mat[r][c] == 0){
+            return;
+        }
+        if(r==n-1 && c==m-1){
+            ans.push_back(temp);
+            return;
+        }
+        mat[r][c] = 0;
+        
+        pathHelper(mat,ans,r+1,c,n,m,temp+"D");
+        pathHelper(mat,ans,r,c+1,n,m,temp+"R");
+        pathHelper(mat,ans,r,c-1,n,m,temp+"L");
+        pathHelper(mat,ans,r-1,c,n,m,temp+"U");
+        
+        mat[r][c] =1;
+        return;
+    }
+
+    vector<string> findPath(vector<vector<int>> &mat) {
+        vector<string> ans;
+        string temp;
+        int n=mat.size();
+        int m = mat[0].size();
+        pathHelper(mat,ans,0,0,n,m,temp);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+#####################################################################################################################################
+
 void path(int m[MAX][MAX],int n,int i,int j,string s,vector<string> &ans){
     if(i==n-1 && j==n-1){
         ans.push_back(s);

@@ -1,0 +1,10 @@
+bool hasArrayTwoCandidates(vector<int>& arr, int x) {
+        int n = arr.size();
+        unordered_set<int> s;
+        s.insert(arr[0]);
+        for(int i=1;i<n;i++){
+            if(s.find(x-arr[i]) != s.end()) return true;
+            s.insert(arr[i]);
+        }
+        return false;
+    }

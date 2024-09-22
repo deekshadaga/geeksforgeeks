@@ -1,0 +1,44 @@
+void dfs(int r, int c, int n, int m, vector<vector<char>> &mat,vector<vector<int>> &vis){
+        if( r<0 || r>=n || c<0 || c>=m || mat[r][c] == 'X' || vis[r][c] == 1)
+            return;
+        vis[r][c] = 1;
+        vector<int> dr = {0,0,1,-1};
+        vector<int> dc = {1,-1,0,0};
+        for(int i=0;i<4;i++){
+            int nr = r+dr[i];
+            int nc = c+dc[i];
+            dfs(nr,nc,n,m,mat,vis);
+        }
+        return;
+    }
+    
+    vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
+    {
+        vector<vector<int>> vis(n,vector<int>(m,0));
+        //for top and bottom rows
+        for(int j=0;j<m;j++){
+            if(mat[0][j] == 'O'){
+                dfs(0,j,n,m,mat,vis);
+            }
+            if(mat[n-1][j] == 'O'){
+                dfs(n-1,j,n,m,mat,vis);
+            }
+        }
+        //for first and last col
+        for(int i=1;i<n-1;i++){
+            if(mat[i][0] == 'O'){
+                dfs(i,0,n,m,mat,vis);
+            }
+            if(mat[i][m-1] == 'O'){
+                dfs(i,m-1,n,m,mat,vis);
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(mat[i][j] == 'O' && vis[i][j] == 0)
+                    mat[i][j] = 'X';
+            }
+        }
+        
+        return mat;
+    }

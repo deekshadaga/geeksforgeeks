@@ -1,0 +1,68 @@
+class LRUCache {
+  private:
+  public:
+  
+    class Node{
+        public:
+            int key,val;
+            Node *next, *prev;
+            Node(int _key, int _val){
+                key = _key;
+                val = _val;
+            }
+    };
+    //scope variables
+    Node* head = new Node(-1,-1);
+    Node* tail = new Node(-1,-1);
+    unordered_map<int,Node*> mp;
+    int capacity;
+    // Constructor for initializing the cache capacity with the given value.
+    LRUCache(int cap) {
+        capacity = cap;
+        head->next = tail;
+        tail->prev = head;
+    }
+    // Adding a new node to LRu Cache Logic
+    void addNode(int key,int val){
+        Node* newNode = new Node(key,val);
+        Node* temp = head->next;
+        head->next = newNode;
+        newNode->next = temp;
+        newNode->prev = head;
+        temp->prev = newNode;
+        mp[key] =newNode;
+    }
+    // Removing a node from LRu Cache Logic
+    void delNode(Node* node){
+        Node* delPrev = node->prev;
+        Node* delNext = node->next;
+        delPrev->next = delNext;
+        delNext->prev = delPrev;
+    }
+    // Function to return value corresponding to the key.
+    int get(int key) {
+        if(mp.find(key)!=mp.end()){
+            Node* temp = mp[key];
+            int val = temp->val;
+            mp.erase(key);
+            delNode(temp);
+            addNode(key,val);
+            return val;
+        }
+        return -1;
+    }
+
+    // Function for storing key-value pair.
+    void set(int key, int value) {
+        if(mp.find(key)!=mp.end()){
+            Node* temp = mp[key];
+            mp.erase(key);
+            delNode(temp);
+        }
+        if(mp.size() == capacity){
+            mp.erase(tail->prev->key);
+            delNode(tail->prev);
+        }
+        addNode(key,value);
+    }
+};

@@ -1,0 +1,48 @@
+void dfs(int node,vector<bool> &vis,vector<vector<int>> edges){
+        vis[node] = true;
+        for(auto it: edges[node]){
+            if(!vis[it]) dfs(it,vis,edges);
+        }
+    }
+    int numProvinces(vector<vector<int>> adj, int V) {
+        vector<vector<int>> edges(V);
+        for(int i=0;i<V;i++){
+            for(int j=0;j<V;j++){
+                if(i!=j && adj[i][j] == 1) edges[i].push_back(j);
+            }
+        }
+        
+        int count=0;
+        vector<bool> vis(V,false);
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                count++;
+                dfs(i,vis,edges);
+            }
+        }
+        return count;
+    }
+
+
+#########################################################################################################################
+
+Gives TLE -
+
+    void dfs(int node,vector<bool> &vis,vector<vector<int>> adj,int V){
+        vis[node] = true;
+        for(int i=0;i<V;i++){
+            if(adj[node][i] && !vis[i] ) dfs(i,vis,adj,V);
+        }
+        return;
+    }
+    int numProvinces(vector<vector<int>> adj, int V) {
+        int provinces=0;
+        vector<bool> vis(V,false);
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                provinces++;
+                dfs(i,vis,adj,V);
+            }
+        }
+        return provinces;
+    }

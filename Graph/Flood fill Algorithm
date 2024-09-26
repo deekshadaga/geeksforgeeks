@@ -1,0 +1,22 @@
+void dfs (int r, int c, vector<vector<int>>& image,int newColor,int oldColor){
+        image[r][c] = newColor;
+        int n= image.size(),m=image[0].size();
+        vector<int> dr = {0,0,-1,1};
+        vector<int> dc = {1,-1,0,0};
+        for(int i=0;i<4;i++){
+            int nr = r+dr[i];
+            int nc = c+dc[i];
+            if(nr < n && nr>=0 && nc<m && nc>=0 && image[nr][nc] == oldColor){
+                dfs(nr,nc,image,newColor,oldColor);
+            }
+        }
+        return;
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc,
+                                  int newColor) {
+        
+        int oldColor = image[sr][sc];
+        if(oldColor == newColor) return image;
+        dfs(sr,sc,image,newColor,oldColor);
+        return image;
+    }

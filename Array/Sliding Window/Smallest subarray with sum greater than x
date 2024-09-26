@@ -1,0 +1,14 @@
+int smallestSubWithSum(int x, vector<int>& arr) {
+        int l=0,r=0;
+        int n=arr.size(), sum=0, minLen=INT_MAX;
+        while(r<n){
+            sum+=arr[r];
+            while(sum>x){
+                minLen=min(minLen,r-l+1);
+                sum-=arr[l];
+                l++;
+            }
+            r++;
+        }
+        return (minLen == INT_MAX)? 0:minLen;
+    }

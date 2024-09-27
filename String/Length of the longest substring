@@ -1,0 +1,18 @@
+TLE --
+
+int longestUniqueSubsttr(string S){
+        int l=0,r=0,n=S.size(),maxLen = INT_MIN;
+        unordered_map<char,int> mp;
+        while(r<n){
+            if(mp.find(S[r])==mp.end()){
+                mp.insert({S[r],r});
+            }
+            else{
+                if(l<=mp[S[r]]) l=mp[S[r]]+1;
+                mp[S[r]] = r;
+            }
+            maxLen = max(maxLen, r-l+1);
+            r++;
+        }
+        return maxLen;
+    }

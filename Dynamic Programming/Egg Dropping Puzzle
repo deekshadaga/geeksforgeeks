@@ -1,0 +1,20 @@
+int solve (int n, int k,vector<vector<int>> &dp ){
+        if(n==0) 
+            return 0;
+        if(n==1 || k==0 || k==1) 
+            return k;
+        if(dp[n][k] != -1) 
+            return dp[n][k];
+        int ans = INT_MAX;
+        for(int i=1;i<=k;i++){
+            int step = 1+ max(solve(n-1,i-1,dp), solve(n,k-i,dp));
+            ans = min(ans,step);
+        }
+        return dp[n][k] = ans;
+        
+    }
+    int eggDrop(int n, int k) 
+    {
+        vector<vector<int>> dp(n+1,vector<int>(k+1,-1));
+        return solve(n,k,dp);
+    }

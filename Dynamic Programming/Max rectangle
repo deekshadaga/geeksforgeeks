@@ -1,0 +1,31 @@
+int getMaxRectangleArea(vector<int> h, int n){
+        stack<int> st;
+        int maxArea=0;
+        for(int i=0;i<=n;i++){
+            while(!st.empty() && (i==n || h[i] < h[st.top()])){
+                int height  = h[st.top()];
+                st.pop();
+                int width = (st.empty())? i: i-st.top()-1;
+                maxArea = max(maxArea , height * width);
+            }
+            st.push(i);
+        }
+        return maxArea;
+    }
+    int maxArea(int M[MAX][MAX], int n, int m) {
+        vector<int> h(m,0);
+        int maxArea=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(M[i][j] == 1){
+                    h[j]++;
+                }
+                else{
+                    h[j] = 0;
+                }
+            }
+            int maxRect = getMaxRectangleArea(h,m);
+            maxArea = max(maxArea,maxRect);
+        }
+        return maxArea;
+    }

@@ -1,0 +1,37 @@
+class Solution
+{
+  public:
+    int getPainters(int arr[], int n, long long mid){
+        int painters = 1;
+        long long boards=0;
+        for(int i=0;i<n;i++){
+            if(boards + arr[i] <= mid){
+                boards+=arr[i];
+            }
+            else{
+                painters++;
+                boards = arr[i];
+            }
+        }
+        return painters;
+    }
+    long long minTime(int arr[], int n, int k)
+    {
+        long long low = -1;
+        long long high = 0;
+        for(int i=0;i<n;i++){
+            low = max(low, (long long)arr[i]);
+            high += arr[i];
+        }
+        while(low<=high){
+            long long mid = low + (high-low)/2;
+            if(getPainters(arr,n,mid) > k){
+                low=mid+1;
+            }
+            else{
+                high = mid-1;
+            }
+        }
+        return low;
+    }
+};

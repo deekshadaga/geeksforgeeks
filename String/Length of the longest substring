@@ -1,3 +1,20 @@
+int longestUniqueSubsttr(string S){
+        int l=0,r=0,n=S.size(),maxLen = 1;
+        vector<int> mp(26,-1);
+        while(r<n){
+            if(mp[S[r]-'a'] != -1 &&  mp[S[r]-'a'] >= l){
+                l=mp[S[r]-'a']+1;
+            }
+            maxLen = max(maxLen, r-l+1);
+            mp[S[r]-'a'] = r;
+            r++;
+        }
+        return maxLen;
+    }
+
+
+#################################################################################################################
+
 TLE --
 
 int longestUniqueSubsttr(string S){

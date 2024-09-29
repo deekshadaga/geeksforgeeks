@@ -1,0 +1,27 @@
+bool isPossible(int N,int P, vector<pair<int, int> >& prerequisites) {
+	    vector<vector<int>> adj(N);
+	    vector<int> indegree(N,0);
+	    for(auto it : prerequisites){
+	        adj[it.second].push_back(it.first);
+	        indegree[it.first]++;
+	    }
+	    int count=0;
+	    queue<int> q;
+	    for(int i=0;i<N;i++){
+	        if(indegree[i] == 0){
+	            q.push(i);
+	        }
+	    }
+	    while(!q.empty()){
+	        int curr = q.front();
+	        count++;
+	        q.pop();
+	        for(auto node : adj[curr]){
+	            indegree[node]--;
+	            if(indegree[node] == 0) {
+	                q.push(node);
+	            }
+	        }
+	    }
+	    return (count == N)? true:false;
+	}

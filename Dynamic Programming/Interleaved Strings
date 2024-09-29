@@ -1,0 +1,24 @@
+class Solution{
+  public:
+    /*You are required to complete this method */
+    bool solve(int i, int j, int k, int n, int m, int l, string A, string B, string C, vector<vector<vector<int>>> &dp){
+        if(k==l) return true;
+        if(dp[i][j][k] != -1) return dp[i][j][k];
+        if(A[i] == C[k] && solve(i+1,j,k+1,n,m,l,A,B,C,dp)) 
+            return dp[i][j][k] = true;
+        else if(B[j] == C[k] && solve(i,j+1,k+1,n,m,l,A,B,C,dp)) 
+            return dp[i][j][k] = true;
+        return dp[i][j][k] = false;
+    }
+    bool isInterleave(string A, string B, string C) 
+    {
+        int n = A.length();
+        int m = B.length();
+        int l = C.length();
+        if(n+m != l) return false;
+        vector<vector<vector<int>>> dp(n+1,vector<vector<int>> (m+1, vector<int> (l+1,-1)));
+        return solve(0,0,0,n,m,l,A,B,C,dp);
+    }
+
+};
+

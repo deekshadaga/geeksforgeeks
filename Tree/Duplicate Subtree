@@ -1,0 +1,24 @@
+string solve(Node *root, unordered_map<string, int> &mp){
+        if(!root) return "";
+        
+        string s = "";
+        
+        if(!root->left && !root->right){
+            s += root->data;
+            return s;
+        }
+        
+        s = solve(root->left, mp) + root->data + solve(root->right, mp);
+        mp[s]++;
+        
+        return s;
+    }
+    int dupSub(Node *root) {
+        unordered_map<string, int> mp;
+        solve(root, mp);
+        
+        for(auto i: mp){
+            if(i.second >= 2) return true;
+        }
+        return false;
+    }

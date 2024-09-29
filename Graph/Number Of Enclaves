@@ -1,0 +1,38 @@
+void dfs(int r, int c,vector<vector<int>> grid,vector<vector<int>>&vis,int n, int m){
+        if(vis[r][c] == 1) return;
+        vis[r][c] = 1;
+        vector<int> dr = {0,0,1,-1};
+        vector<int> dc = {1,-1,0,0};
+        for(int i=0;i<4;i++){
+            int nr = r+dr[i];
+            int nc = c+dc[i];
+            if(nr>=0 && nr <n && nc>=0 && nc <m && grid[nr][nc] == 1 && vis[nr][nc] == 0){
+                dfs(nr,nc,grid,vis,n,m);
+            }
+        }
+        return;
+    }
+    int numberOfEnclaves(vector<vector<int>> &grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> vis(n,vector<int>(m,0));
+        for(int i=0;i<n;i++){
+            if(grid[i][0] == 1 && vis[i][0] ==0) 
+                dfs(i,0,grid,vis,n,m);
+            if(grid[i][m-1] == 1 && vis[i][m-1] ==0) 
+                dfs(i,m-1,grid,vis,n,m);
+        }
+        for(int i=1;i<m-1;i++){
+            if(grid[0][i] == 1 && vis[0][i] ==0) 
+                dfs(0,i,grid,vis,n,m);
+            if(grid[n-1][i] == 1 && vis[n-1][i] ==0) 
+                dfs(n-1,i,grid,vis,n,m);
+        }
+        int count=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j] == 1 && vis[i][j] == 0) count++;
+            }
+        }
+        return count;
+    }

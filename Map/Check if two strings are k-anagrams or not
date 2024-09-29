@@ -1,0 +1,19 @@
+bool areKAnagrams(string str1, string str2, int k) {
+        
+        if(str1.size() != str2.size()) return false;
+        
+        int count=0;
+        vector<int> freq(26,0);
+        
+        for(int i=0;i<str1.size();i++){
+            freq[str1[i]-'a']++;
+            freq[str2[i]-'a']--;
+        }
+        
+        for(int i=0;i<26;i++){
+            if(freq[i]!=0)
+                count += abs(freq[i]);
+        }
+        
+        return count/2 <= k;
+    }

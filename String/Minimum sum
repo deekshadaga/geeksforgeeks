@@ -1,0 +1,17 @@
+string solve(int arr[], int n) {
+        sort(arr,arr+n);
+        string ans;
+        int i = n-1,j=n-2;
+        int carry=0;
+        while(i>=0 || j>=0 || carry !=0){
+            int sum = carry;
+            if(i>=0) sum+=arr[i];
+            if(j>=0) sum+=arr[j];
+            carry = sum/10;
+            if(sum)
+                ans = char(sum%10+'0')+ans;
+            i-=2;
+            j-=2;
+        }
+        return (ans == "")? "0":ans;
+    }

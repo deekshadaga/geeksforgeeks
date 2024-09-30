@@ -1,0 +1,33 @@
+int minStepToReachTarget(vector<int>&KnightPos, vector<int>&TargetPos, int N){
+        queue<pair<int,pair<int,int>>> q;
+        int sr = KnightPos[0]-1;
+        int sc = KnightPos[1]-1;
+        int tr = TargetPos[0]-1;
+        int tc = TargetPos[1]-1;
+        q.push({0,{sr,sc}});
+        vector<int> dr = {2,2,-2,-2,1,-1,1,-1};
+        vector<int> dc = {1,-1,1,-1,2,2,-2,-2};
+        vector<vector<bool>> vis(N,vector<bool>(N,false));
+        vis[sr][sc]=true;
+        int mini =INT_MAX;
+        while(!q.empty()){
+            int steps = q.front().first;
+            int r = q.front().second.first;
+            int c = q.front().second.second;
+            q.pop();
+            if(r==tr && c==tc){
+                mini = min(mini, steps);
+            }
+            else{
+                for(int k=0;k<8;k++){
+                    int nr = r+dr[k];
+                    int nc = c+dc[k];
+                    if(nr >=0 && nr<N && nc>=0 && nc<N && !vis[nr][nc]){
+                        q.push({steps+1,{nr,nc}});
+                        vis[nr][nc] = true;
+                    }
+                }
+            }
+        }
+        return mini!=INT_MAX ? mini: -1;
+	}

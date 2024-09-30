@@ -1,0 +1,26 @@
+long long int PowMod(long long int x,long long int n,long long int M)
+		{
+		    long long int ans = 1;
+		    while(n>0){
+		        if(n&1){
+		            ans = (ans*x)%M;
+		        }
+		        x = (x*x) %M;
+		        n>>=1;
+		    }
+		    return ans;
+		}
+
+
+########################################################################################
+
+long long int PowMod(long long int x,long long int n,long long int M)
+    {
+		    if(n==0) return 1;
+            long long smallPower=PowMod(x,n/2,M);
+            smallPower=((smallPower%M)*(smallPower%M))%M;
+            if(n%2==0)
+                return smallPower%M;
+            else
+                return ((smallPower%M)*(x%M))%M;
+		}

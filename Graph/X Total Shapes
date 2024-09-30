@@ -1,0 +1,33 @@
+int xShape(vector<vector<char>>& grid) 
+    {
+        int n=grid.size();
+        int m=grid[0].size();
+        queue<pair<int,int>> q;
+        int count = 0;
+        vector<int> dr = {0,0,1,-1};
+        vector<int> dc = {1,-1,0,0};
+        vector<vector<bool>> vis(n,vector<bool>(m,false));
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j] == 'X' && !vis[i][j]){
+                    vis[i][j] = true;
+                    count++;
+                    q.push({i,j});
+                    while(!q.empty()){
+                        int r = q.front().first;
+                        int c = q.front().second;
+                        q.pop();
+                        for(int k=0;k<4;k++){
+                            int nr = r+dr[k];
+                            int nc = c+dc[k];
+                            if(nr >=0 && nr<n && nc>=0 && nc<m && grid[nr][nc] == 'X' && !vis[nr][nc]){
+                                q.push({nr,nc});
+                                vis[nr][nc] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }

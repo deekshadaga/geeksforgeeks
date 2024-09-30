@@ -1,0 +1,16 @@
+int countBits(int N, long long int A[])
+    {
+        long long int ans=0;
+        for(int i=0;i<32;i++){
+            long long int setCount =0, unsetCount=0;
+            for(int j=0;j<N;j++){
+                if(A[j] & (1<<i))
+                    setCount++;
+            }
+            if(setCount != 0){
+                unsetCount = N-setCount;
+                ans+=((setCount * unsetCount) % 1000000007)*2 % 1000000007;
+            }
+        }
+        return ans%1000000007;
+    }

@@ -1,0 +1,57 @@
+DP -
+
+int helper(Node* root, map<Node*,int> &dp){
+        if(root == NULL) return 0;
+        if(dp[root]) return dp[root];
+        
+        //including node
+        int include = root->data;
+        if(root->left){
+            include+=(helper(root->left->left,dp) + helper(root->left->right,dp));
+        }
+        if(root->right){
+            include+=(helper(root->right->left,dp) + helper(root->right->right,dp));
+        }
+        
+        //excluding node
+        int exclude = helper(root->left,dp) + helper(root->right,dp);
+        
+        return dp[root] = max(include,exclude);
+    }
+    //Function to return the maximum sum of non-adjacent nodes.
+    int getMaxSum(Node *root) 
+    {
+        if(root == NULL) return 0;
+        map<Node*,int> dp;
+        return helper(root,dp);
+    }
+};
+
+
+#######################################################################################################################################
+
+RECURSION -
+
+class Solution{
+  public:
+    pair<int,int> helper(Node* root){
+        if(root == NULL) return{0,0};
+        
+        pair<int,int> l = helper(root->left);
+        pair<int,int> r = helper(root->right);
+        
+        //including node
+        int include = root->data + l.second + r.second;
+        //excluding node
+        int exclude = max(l.first , l.second) + max(r.first,r.second);
+        
+        return {include,exclude};
+    }
+    //Function to return the maximum sum of non-adjacent nodes.
+    int getMaxSum(Node *root) 
+    {
+        if(root == NULL) return 0;
+        auto ans = helper(root);
+        return max(ans.first,ans.second);
+    }
+};

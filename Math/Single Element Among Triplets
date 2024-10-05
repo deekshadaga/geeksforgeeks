@@ -1,0 +1,15 @@
+int singleElement(int arr[] ,int N) {
+        int result = 0;
+        for (int i = 0; i < 32; i++) {
+            int sum = 0;
+            for (int j = 0; j < N; j++) {
+                // getting set bit count
+                sum += (arr[j] >> i) & 1;
+            }
+            // getting set bit % 3 value and if it is 1 
+            // then setting that bit as 1 for result
+            result |= (sum % 3) << i;
+        }
+        return result;
+     
+    }

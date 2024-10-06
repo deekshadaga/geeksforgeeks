@@ -1,0 +1,22 @@
+int LargButMinFreq(int arr[], int n) {
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++)
+        {
+            mp[arr[i]]++;
+        }
+        int min=INT_MAX;
+        int res;
+        for(auto i:mp)
+        {
+            if(i.second<min)
+            {
+                min=i.second;
+                res=i.first;
+            }
+            else if(i.second==min and i.first>res)
+            {
+                res=i.first; 
+            }
+        }
+        return res;
+    }

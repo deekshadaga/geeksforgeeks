@@ -1,0 +1,24 @@
+long long int countStr(long long int n){
+    const long long res = 1 + 2 * n + (3 * (n - 1) * n) / 2 + (n * (n - 1) * (n - 2)) / 2;
+    return res;
+}
+
+############################################################################################################################################################
+
+
+void check(string s, long long int n, int nb, int nc, long long int &count){
+    if(s.size() == n){
+        count ++;
+        return;
+    }
+    check(s+"a", n,nb,nc,count);
+    if(nb>0) check(s+"b", n, nb-1,nc,count);
+    if(nc>0) check(s+"c",n,nb,nc-1,count);
+    return;
+}
+long long int countStr(long long int n){
+    long long int count=0;
+    string s ="";
+    check(s,n,1,2,count);
+    return count;
+}

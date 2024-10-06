@@ -1,0 +1,15 @@
+long long maxArea(long long A[], int len)
+{
+    int l=0, r = len-1;
+    long long ans=0;
+    while(l<r){
+        long long water = min(A[l],A[r]) * (r-l);
+        ans = max(ans, water);
+        if(A[l]< A[r])
+            l++;
+        else
+            r--;
+    }
+    return ans;
+    
+}

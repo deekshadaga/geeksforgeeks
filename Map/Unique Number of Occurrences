@@ -1,0 +1,14 @@
+bool isFrequencyUnique(int n, int arr[])
+    {
+        unordered_map<int,int> mp;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        vector<int> freq(n+1,false);
+        for(auto it:mp){
+            if(freq[it.second]) return false;
+            freq[it.second] = true;
+        }
+        
+        return true;
+    }

@@ -1,0 +1,30 @@
+void solve(int n, string &chk, int open, int close, vector<string> &res)
+    {
+    
+        if (chk.size() == 2 * n)
+        {
+            res.push_back(chk);
+            return;
+        }
+    
+        if (open < n)
+        {
+            chk.push_back('(');
+            solve(n, chk, open + 1, close,res);
+            chk.pop_back();
+        }
+    
+        if (close < open)
+        {
+            chk.push_back(')');
+            solve(n, chk, open, close + 1,res);
+            chk.pop_back();
+        }
+    }
+    vector<string> AllParenthesis(int n) 
+    {
+        vector<string> res;
+        string chk = "";
+        solve(n, chk, 0, 0,res);
+        return res;
+    }

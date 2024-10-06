@@ -1,0 +1,15 @@
+long long int optimalKeys(int N){
+        if(N<6) return N;
+        vector<long long int> dp(N+1,0);
+        for(int i=0;i<=6;i++){
+            dp[i] = i;
+        }
+        for(int i=7;i<=N;i++){
+            for(int j=i-3;j>=1;j--){
+                long long int cur = dp[j]*(i-j-1);
+                dp[i] = max(cur,dp[i]);
+            }
+            
+        }
+        return dp[N];
+    }

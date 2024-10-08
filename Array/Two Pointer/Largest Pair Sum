@@ -1,0 +1,13 @@
+int pairsum(vector<int> &arr) {
+        int l=0,r=arr.size()-1,sum=0;
+        while(l<r){
+            sum = max(arr[l]+arr[r],sum);
+            if(arr[l]<arr[r]){
+                l++;
+            }
+            else{
+                r--;
+            }
+        }
+        return sum;
+    }

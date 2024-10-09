@@ -1,0 +1,42 @@
+vector<vector<string>> findSequences(string beginWord, string endWord, vector<string>& wordList) {
+        if(beginWord == endWord) return {};
+        vector<vector<string>> ans;
+        vector<string> usedOnLevel;
+        usedOnLevel.push_back(beginWord);
+        unordered_set<string> wl(wordList.begin(),wordList.end());
+        queue<vector<string>> q;
+        int level = 0;
+        q.push({beginWord});
+        wl.erase(beginWord);    
+        while(!q.empty()){
+            vector<string> vec = q.front();
+            q.pop();
+            if(vec.size() > level){
+                level++;
+                for(auto it: usedOnLevel){
+                    wl.erase(it);
+                }
+                usedOnLevel.clear();
+            }
+            string word = vec.back();
+            if(word == endWord){
+                if(ans.size() == 0 || ans[0].size() == vec.size()){
+                    ans.push_back(vec);
+                }
+            }
+            for(int i=0;i<word.size();i++){
+                char og = word[i];
+                for(char j='a';j<='z';j++){
+                    word[i] = j;
+                    if(wl.find(word)!=wl.end()){
+                        vec.push_back(word);
+                        q.push(vec);
+                        usedOnLevel.push_back(word);
+                        vec.pop_back();
+                    }
+                }
+                word[i] = og;
+            }
+        }
+        return ans;
+    }

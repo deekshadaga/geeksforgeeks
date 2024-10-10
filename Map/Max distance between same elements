@@ -1,0 +1,13 @@
+int maxDistance(vector<int> &arr) {
+        unordered_map<int,int> mp;
+        int maxDist=0;
+        for(int i=0;i<arr.size();i++){
+            if(mp.find(arr[i])!=mp.end()){
+                maxDist = max(maxDist, i-mp[arr[i]]);
+            }
+            else{
+                mp.insert({arr[i],i});
+            }
+        }
+        return maxDist;
+    }

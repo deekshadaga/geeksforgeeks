@@ -1,0 +1,51 @@
+class Solution {
+  public:
+    void merge(vector<int>&arr,int l,int mid,int r, vector<int> &indices,vector<int>&count){
+        int n = r-l+1;
+        vector<int> newIndices(n);
+        int i=l,j=mid+1,k=0,rightCounter=0;
+        while(i<=mid && j<=r){
+            if(arr[indices[i]] <= arr[indices[j]] ){
+                newIndices[k] = indices[i];
+                count[indices[i]] += rightCounter;
+                i++;
+            }
+            else{
+                newIndices[k] = indices[j];
+                rightCounter++;
+                j++;
+            }
+            k++;
+        }
+        while(i<=mid){
+            newIndices[k] = indices[i];
+            count[indices[i]] += rightCounter;
+            i++;
+            k++;
+        }
+        while(j<=r){
+            newIndices[k] = indices[j];
+            j++;
+            k++;
+        }
+        for(int k=0;k<n;k++){
+            indices[l+k] = newIndices[k];
+        }
+    }
+    void mergeSort(vector<int>&arr,int l,int r, vector<int> &indices,vector<int>&count){
+        if(l<r){
+            int mid = l+(r-l)/2;
+            mergeSort(arr,l,mid,indices,count);
+            mergeSort(arr,mid+1,r,indices,count);
+            merge(arr,l,mid,r,indices,count);
+        }
+    }
+    vector<int> constructLowerArray(vector<int> &arr) {
+        int n = arr.size();
+        vector<int> indices(n),count(n,0);
+        for(int i=0;i<n;i++)
+            indices[i] = i;
+        mergeSort(arr,0,n-1,indices,count);
+        return count;
+    }
+};

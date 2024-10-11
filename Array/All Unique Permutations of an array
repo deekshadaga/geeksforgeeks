@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    void recurPerm(int idx, vector<int> &arr, int n, set<vector<int>> &ans){
+        if(idx==n){
+            ans.insert(arr);
+            return;
+        }
+        for(int i = idx;i<n;i++){
+            swap(arr[idx],arr[i]);
+            recurPerm(idx+1,arr,n,ans);
+            swap(arr[idx],arr[i]);
+        }
+        return;
+    }
+    vector<vector<int>> uniquePerms(vector<int> &arr ,int n) {
+        set<vector<int>> ans;
+        sort(arr.begin(),arr.end());
+        recurPerm(0,arr,n,ans);
+        vector<vector<int>> res;
+        for(auto it: ans){
+            res.push_back(it);
+        }
+        return res;
+    }
+};

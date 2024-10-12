@@ -1,0 +1,38 @@
+long long solve(int X,int Y,string S){
+        string s1 = "pr", s2="rp";
+        if(Y>X){
+            s1="rp";
+            s2="pr";
+            int temp = X;
+            X=Y;
+            Y=temp;
+        }
+        long long ans=0;
+        int n = S.size();
+        stack<char> st;
+        for(int i=n-1;i>=0;i--){
+            if(!st.empty() && st.top() == s1[1] && S[i]==s1[0]){
+                st.pop();
+                ans+=X;
+            }
+            else{
+                st.push(S[i]);
+            }
+        }
+        string t = "";
+        while(!st.empty()){
+            t+=st.top();
+            st.pop();
+        }
+        n=t.size();
+        for(int i=n-1;i>=0;i--){
+            if(!st.empty() && st.top() == s2[1] && t[i]==s2[0]){
+                st.pop();
+                ans+=Y;
+            }
+            else{
+                st.push(t[i]);
+            }
+        }
+        return ans;
+    }

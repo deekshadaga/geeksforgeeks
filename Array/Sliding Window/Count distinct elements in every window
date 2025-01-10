@@ -1,0 +1,17 @@
+vector<int> countDistinct(vector<int> &arr, int k) {
+        int n = arr.size();
+        unordered_map<int,int> mp;
+        vector<int> res;
+        int l=0,r=0;
+        for(r=0;r<n;r++){
+            mp[arr[r]]++;
+            if(r>=k-1){
+                res.push_back(mp.size());
+                mp[arr[l]]--;
+                if(mp[arr[l]]==0)
+                    mp.erase(arr[l]);
+                l++;
+            }
+        }
+        return res;
+    }

@@ -1,0 +1,16 @@
+void nearlySorted(vector<int>& arr, int k) {
+        priority_queue<int,vector<int>,greater<int>> min_heap;
+        int n=arr.size();
+        int idx=0;
+        for(int i=0;i<n;i++){
+            min_heap.push(arr[i]);
+            if(min_heap.size()>k){
+                arr[idx++] = min_heap.top();
+                min_heap.pop();
+            }
+        }
+        while(!min_heap.empty()){
+            arr[idx++]=min_heap.top();
+            min_heap.pop();
+        }
+    }

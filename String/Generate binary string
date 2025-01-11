@@ -1,0 +1,20 @@
+void fun(int i, string t, string s, vector<string> &ans){
+	        if(i==s.size()){
+	            ans.push_back(t);
+	            return;
+	        }
+	        if(s[i] == '?'){
+	            fun(i+1, t+'0', s,ans);
+	            fun(i+1, t+'1', s,ans);
+	        }
+	        else{
+	            fun(i+1,t+s[i],s,ans);
+	        }
+	        return;
+	    }
+		vector<string> generate_binary_string(string s)
+		{
+		    vector<string> ans;
+		    fun(0,"",s,ans);
+		    return ans;
+		}

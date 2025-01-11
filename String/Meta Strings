@@ -1,0 +1,25 @@
+bool metaStrings (string S1, string S2)
+{
+    int n = S1.length();
+    int m = S2.length();
+    if(n!=m || S1==S2) return false;
+    char c1 = '&';
+    char c2 = '&';
+    int notMatch = 0;
+    for(int i=0;i<n;i++){
+        if(S1[i] != S2[i]){
+            notMatch++;
+            if(notMatch > 2) 
+                return false;
+            else if(c1=='&' && c2=='&'){
+                c1=S1[i];
+                c2=S2[i];
+            }
+            else if(c1 != S2[i] || c2 != S1[i]) 
+                return false;
+        }
+    }
+    if(notMatch==2)
+        return true;
+    return false;
+}

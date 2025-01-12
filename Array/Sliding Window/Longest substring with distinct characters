@@ -1,0 +1,14 @@
+int longestUniqueSubstr(string &s) {
+        int ans=0;
+        int n = s.size();
+        int l=-1,i;
+        unordered_map<char,int> mp;
+        for(i=0;i<n;i++){
+            if(mp.find(s[i])!=mp.end()){
+                l=max(l,mp[s[i]]);
+            }
+            ans = max(ans,i-l);
+            mp[s[i]] = i;
+        }
+        return ans;
+    }

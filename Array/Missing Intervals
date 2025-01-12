@@ -1,0 +1,17 @@
+vector<pair<int, int>> missingIntervals(vector<int> &arr, int l, int r) {
+        vector<pair<int,int>> ans;
+        int n=arr.size();
+        if (l < arr[0]) {
+            ans.push_back({l, arr[0] - 1});
+        }
+        for(int i=1;i<n;i++){
+            if (arr[i] > arr[i - 1] + 1) {  
+                ans.push_back({arr[i - 1] + 1, arr[i] - 1});
+            }
+        }
+        if(r>arr[n-1]){
+            ans.push_back({arr[n-1]+1,r});
+        }
+        if(ans.empty()) ans.push_back({-1,-1});
+        return ans;
+    }

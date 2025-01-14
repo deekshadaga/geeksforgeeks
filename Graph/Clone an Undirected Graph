@@ -1,0 +1,14 @@
+class Solution {
+public:
+    map<Node*,Node*> cloneMap;
+    Node* cloneGraph(Node* node) {
+        if(!node) return node;
+        if(cloneMap.find(node) != cloneMap.end()) return cloneMap[node];
+        Node* root = new Node(node->val);
+        cloneMap[node] = root;
+        for(Node* neighbor : node->neighbors){
+            root->neighbors.push_back(cloneGraph(neighbor));
+        }
+        return root;
+    }
+}

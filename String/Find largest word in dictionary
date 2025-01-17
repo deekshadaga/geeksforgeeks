@@ -1,0 +1,33 @@
+private:
+    bool isSubsequence(string s1 , string s2){
+        int n = s1.length();
+        int m = s2.length();
+        int i = 0 ; 
+        int j = 0;
+        while(i<n && j<m){
+            if(s1[i] == s2[j]){
+                i++;
+                j++;
+                continue;
+            }
+            i++;
+        }
+        if(j == m)return true;
+        return false;
+    }
+  public:
+    string findLongestWord(string S, vector<string> d) {
+        int maxi =  0;
+        string ans;
+        sort(d.begin() , d.end());
+        for(int i = 0 ; i < d.size() ; i++){
+            if(isSubsequence(S , d[i] )){
+                int len = d[i].length();
+                if(len > maxi){
+                    maxi = len;
+                    ans = d[i];
+                }
+            }
+        }
+        return ans;
+    }

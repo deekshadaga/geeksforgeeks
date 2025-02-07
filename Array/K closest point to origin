@@ -1,0 +1,15 @@
+class Solution{
+  public:
+    bool static cmp (vector<int> &x, vector<int> &y){
+        int dis1 = x[0]*x[0] + x[1]*x[1];
+        int dis2 = y[0]*y[0] + y[1]*y[1];
+        if(dis1!=dis2) return dis1<dis2;
+        if(x[0]!=y[0]) return x[0]<y[0];
+        return x[1]<y[1]; 
+    }
+    vector<vector<int>> kClosest(vector<vector<int>>& arr, int K) {
+        sort(arr.begin(), arr.end(), cmp);
+        vector<vector<int>> ans(arr.begin(), arr.begin() + K);
+        return ans;
+    }
+};

@@ -1,0 +1,76 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+    vector<int> largestDivisibleSubset(vector<int>& arr) {
+        int n =arr.size();
+        sort(arr.begin(),arr.end());
+        vector<int> dp(n,1),hash(n);
+        int maxi = 1;
+        int lastidx = 0;
+        for(int i=1;i<n;i++){
+            hash[i]=i;
+            for(int prev=i-1;prev>=0;prev--){
+                if(arr[i] > arr[prev] && arr[i]%arr[prev] == 0 && dp[prev]+1 > dp[i]){
+                    dp[i] = dp[prev]+1;
+                    hash[i] = prev;
+                }
+            }
+            if(dp[i] >= maxi){
+                maxi = dp[i];
+                lastidx = i;
+            }
+        }
+        vector<vector<int>> ans;
+        for(int i=0;i<n;i++){
+            if(dp[i] == maxi){
+                vector<int> temp;
+                int lastidx = i;
+                temp.push_back(arr[lastidx]);
+                while(lastidx != hash[lastidx]){
+                    lastidx = hash[lastidx];
+                    temp.push_back(arr[lastidx]);
+                }
+                reverse(temp.begin(),temp.end());
+                ans.push_back(temp);
+            }
+        }
+        sort(ans.begin(), ans.end());
+        return ans[ans.size() - 1];
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t; // Number of test cases
+    cin >> t;
+    cin.ignore(); // Ignore the newline after the integer input
+    while (t--) {
+        vector<int> a;
+        string input;
+
+        // Input format: first number n followed by the array elements
+        getline(cin, input);
+        stringstream ss(input);
+        int num;
+        while (ss >> num)
+            a.push_back(num); // Read the array elements from input string
+
+        Solution obj;
+        vector<int> res =
+            obj.largestDivisibleSubset(a); // Pass the correct array 'a' to the function
+        for (int x : res) {
+            cout << x << " ";
+        }
+        cout << endl; // Ensure new line after each test case output
+    }
+
+    return 0;
+}
+
+// } Driver Code Ends

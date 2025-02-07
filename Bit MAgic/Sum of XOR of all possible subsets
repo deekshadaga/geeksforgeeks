@@ -1,0 +1,54 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function template for C++
+class Solution {
+  public:
+    int subsetXORSum(vector<int>& arr) {
+        int subSetSum = 0 ;
+        int i = 0, n = arr.size();
+        while(i < 32){
+            int count = 0 ;
+            for(int num : arr){
+                if( (num & (1 << i) )== (1 << i)){
+                    count++ ;
+                }
+            }
+            if(count > 0){
+                subSetSum += (1 << i) ;
+            }
+            i++ ;
+        }
+        return pow(2, n-1)*subSetSum ;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore(); // to ignore the newline after the integer input
+    while (t--) {
+        int n;
+        vector<int> a;
+        string input;
+
+        // Input format: first number n followed by the array elements
+        getline(cin, input);
+        stringstream ss(input);
+        int num;
+        while (ss >> num)
+            a.push_back(num);
+
+        Solution obj;
+        cout << obj.subsetXORSum(a) << endl;
+    }
+
+    return 0;
+}
+
+// } Driver Code Ends

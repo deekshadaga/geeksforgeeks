@@ -1,0 +1,19 @@
+vector<vector<string>> groupShiftedString(vector<string> &arr) {
+        unordered_map<string, vector<string>> groups;
+        for (string s : arr) {
+            string pattern = "";
+            for (int i = 1; i < s.size(); i++) {
+                int diff = (s[i] - s[i-1] + 26) % 26;
+                pattern += to_string(diff) + ","; 
+            }
+            if (s.size() == 1) {
+                pattern = "single";
+            }
+            groups[pattern].push_back(s);
+        }
+        vector<vector<string>> result;
+        for (auto &group : groups) {
+            result.push_back(group.second);
+        }
+        return result;
+    }

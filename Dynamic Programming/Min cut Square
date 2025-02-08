@@ -1,0 +1,21 @@
+int getSquaresCount(int r, int c,vector<vector<int>> &dp){
+	    if(r==c) return dp[r][c] = 1;
+	    if(r<0 || c<0) return 1e9;
+	    if(dp[r][c] != -1) return dp[r][c];
+	    int t1 = INT_MAX, t2=INT_MAX;
+	    for(int i=1;i<r;i++){
+	        int count = getSquaresCount(i,c,dp)+getSquaresCount(r-i,c,dp);
+	        t1 = min(t1,count);
+	    }
+	    for(int i=1;i<c;i++){
+	        int count = getSquaresCount(r,i,dp)+getSquaresCount(r,c-i,dp);
+	        t2 = min(t2,count);
+	    }
+	    return dp[r][c] = min(t1,t2);
+	}
+	int minCut(int M, int N)
+	{
+        vector<vector<int>> dp (M+1, vector<int> (N+1,-1));
+        getSquaresCount(M,N,dp);
+        return dp[M][N];
+	}
